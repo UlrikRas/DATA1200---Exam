@@ -14,6 +14,7 @@
                 margin: 0;
                 font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
                 background-color: rgb(248, 248, 248);
+                color: #000;
             }
             main {
                 min-height: 1000px;
@@ -349,6 +350,11 @@
                 max-width: 1000px;
             }
 
+            .requirements-section-link {
+                font-weight: 700;
+                text-decoration: underline;
+            }
+
             .paragraph-content {
                 background-color: #fff;
                 padding: 10px;
@@ -416,18 +422,18 @@
     <body>
         <header class="header">
             <div class="header-left-section">
-                <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png"></a>
+                <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png" alt="Oslo Metropolitan University logo"></a>
             </div>
             <div class="header-center-section">
                 <input class="search-bar" type="text" placeholder="Søk">
                 <button class="search-button">
-                    <img class="search-icon" src="icons/search-icon.svg">
+                    <img class="search-icon" src="icons/search-icon.svg" alt="Søk">
                     <div class="tooltip tooltip-top">Søk</div>
                 </button>
             </div>
             <div class="header-right-section">
                 <a class="student-overview-button" href="https://www.oslomet.no/studier/studieoversikt" target="_blank">
-                    <img src="icons/arrow-left.svg">
+                    <img src="icons/arrow-left.svg" alt="Studieoversikt">
                     <span>Studieoversikt</span>
                     <div class="tooltip tooltip-top">Finn studier</div>
                 </a>
@@ -436,8 +442,21 @@
 
         <section>
             <nav class="sidebar-menu">
+                <a class="sidebar-menu-link" href="accessibility.html">
+                    <img src="icons/accessibility-icon.png" alt="Accessibility">
+                    <div>Accessibility</div>
+                </a>
+                <a class="sidebar-menu-link" href="git.html">
+                    <img src="icons/github-icon.png" alt="GitHub">
+                    <div>GitHub</div>
+                </a>
+                <a class="sidebar-menu-link" href="activity.html">
+                    <img src="icons/activity-icon.png" alt="Activit">
+                    <div>Activity</div>
+                </a>
+
                 <a class="sidebar-menu-link" href="https://www.oslomet.no/studier">
-                    <img src="icons/study-icon.png">
+                    <img src="icons/study-icon.png" alt="Studier">
                     <div>Studier</div>
                 </a>
                 <a class="sidebar-menu-link" href="https://www.oslomet.no/forskning">
@@ -513,7 +532,7 @@
                 <h2>Opptakskrav og poeng</h2>
                 <p>For å søke på dette programmet må du ha</p>
                 <ul>
-                    <li><a href="https://www.samordnaopptak.no/info/opptak/opptak-uhg/">Generell studiekompetanse (samordnaopptak.no)</a> eller <a href="https://www.oslomet.no/studier/soknad-og-opptak/realkompetanse/realkompetanse-ingenior">oppfylle kravene til realkompetanse</a></li>
+                    <li><a class="requirements-section-link" href="https://www.samordnaopptak.no/info/opptak/opptak-uhg/" target="_blank">Generell studiekompetanse (samordnaopptak.no)</a> eller <a class="requirements-section-link" href="https://www.oslomet.no/studier/soknad-og-opptak/realkompetanse/realkompetanse-ingenior" target="_blank">oppfylle kravene til realkompetanse</a></li>
                     <li>Matematikk R1 og R2</li>
                     <li>Fysikk 1</li>
                 </ul>
