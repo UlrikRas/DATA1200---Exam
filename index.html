@@ -143,6 +143,7 @@
             .footer {
                 border-top: 1px solid rgb(228, 228, 228);
                 height: 200px;
+                margin-left: 100px;
             }
 
             .footer-top {
@@ -204,6 +205,43 @@
             .social-media-links img {
                 margin-right: 10px;
             }
+
+            .sidebar-menu {
+                position: fixed; 
+                top: 55px; 
+                bottom: 0; 
+                left: 0; 
+
+                z-index: 200; 
+
+                border-right: 1px solid rgb(228, 228, 228); 
+                width: 100px;
+            }
+            .sidebar-menu-link {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                height: 74px;
+
+                font-size: 10px;
+                text-decoration: none;
+                color: #000;
+            }
+            .sidebar-menu-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+            .sidebar-menu-link img {
+                margin: 0 0 4px 0;
+                height: 24px;
+            }
+            .sidebar-menu-bottom-link {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100px;
+            }
         </style>
     </head>
 
@@ -228,6 +266,39 @@
             </div>
         </header>
 
+        <section>
+            <nav class="sidebar-menu">
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/studier">
+                    <img src="icons/study-icon.png">
+                    <div>Studier</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/forskning">
+                    <img src="icons/research-icon.png">
+                    <div>Forskningen vår</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/om/samarbeid">
+                    <img src="icons/teamwork-icon.png">
+                    <div>Samarbeid</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/ub">
+                    <img src="icons/library-icon.png">
+                    <div>Universitetsbiblioteket</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/om/kontakt">
+                    <img src="icons/contact.png">
+                    <div>Kontakt</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/om/for-studenter">
+                    <img src="icons/students-icon.png">
+                    <div>For studenter</div>
+                </a>
+
+                <a class="sidebar-menu-link sidebar-menu-bottom-link" href="https://www.oslomet.no/om">
+                    <img src="icons/about-icon.png">
+                    <div>Om OsloMet</div>
+                </a>
+            </nav>
+        </section>
 
         <main>
             Detter er main
@@ -237,7 +308,7 @@
             <section class="footer-top">
                 <div class="footer-top-inner">
                     <h2>Hold deg oppdatert på hva som skjer på OsloMet.</h2>
-                    <a href="https://www.oslomet.no/nyhetsbrev">Abonner på vårt nyhetsbrev!</a>
+                    <a href="#">Abonner på vårt nyhetsbrev!</a>
                 </div>
             </section>
 
