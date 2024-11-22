@@ -2,9 +2,148 @@
 <html lang="no">
     <head>
         <title>Matematisk modellering og datavitenskap – ingeniør - OsloMet</title>
+        <link rel="icon" type="image/png" href="icons/favicon-32x32.png">
+
+        <style>
+            body {
+                font-family: Moderat, Avenir, Helvetica, Arial, sans-serif;
+            }
+
+            .search-button,
+            .student-overview-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                cursor: pointer;
+            }
+            .search-button .tooltip,
+            .student-overview-button .tooltip {
+                position: absolute;
+                bottom: -30px;
+
+                opacity: 0;
+                transition: opacity 0.15s;
+
+                pointer-events: none;
+                white-space: nowrap;
+
+                background-color: gray;
+                color: #fff;
+                font-size: 12px;
+                font-weight: 400;
+                padding: 4px 8px;
+                border-radius: 2px;
+            }
+            .search-button:hover .tooltip,
+            .student-overview-button:hover .tooltip {
+                opacity: 1;
+            }
+
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+
+                z-index: 100;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                height: 55px;
+                background-color: #fff;
+                border-bottom: 1px solid rgb(228, 228, 228);
+            }
+
+            .header-left-section {
+                margin: 3px 25px;
+
+                /*display: flex;
+                flex-direction: row;
+                align-items: center;*/
+            }
+            .oslomet-logo {
+                width: 75px;
+            }
+
+            .header-center-section {
+                margin: 0 35px 0 60px;
+                max-width: 400px;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex: 1;
+
+            }
+            .search-bar {
+                flex: 1;
+
+                width: 0;
+                height: 30px;
+
+                padding-left: 10px;
+                border: 1px solid rgb(192, 192, 192);
+                border-radius: 2px;
+                font-size: 16px;
+
+                box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+            }
+            .search-button {
+                margin: 0 10px 0 -1px;
+
+                width: 55px;
+                height: 34px;
+
+                border: 1px solid rgb(192, 192, 192);
+
+                cursor: pointer;
+            }
+            .search-icon {
+                height: 20px;
+                margin-top: 4px;
+            }
+
+            .header-right-section {
+                margin: 0 15px;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            .student-overview-button {
+                color: #000;
+                text-decoration: underline;
+                font-size: 16px;
+                font-weight: 700;
+            }
+            .student-overview-button img {
+                margin-right: 10px;
+            }
+        </style>
     </head>
 
     <body>
-
+        <header class="header">
+            <div class="header-left-section">
+                <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png"></a>
+            </div>
+            <div class="header-center-section">
+                <input class="search-bar" type="text" placeholder="Søk">
+                <button class="search-button">
+                    <img class="search-icon" src="icons/search-icon.svg">
+                    <div class="tooltip">Søk</div>
+                </button>
+            </div>
+            <div class="header-right-section">
+                <a class="student-overview-button" href="https://www.oslomet.no/studier/studieoversikt" target="_blank">
+                    <img src="icons/arrow-left.svg">
+                    <span>Studieoversikt</span>
+                    <div class="tooltip">Finn studier</div>
+                </a>
+            </div>
+        </header>
     </body>
 </html>
