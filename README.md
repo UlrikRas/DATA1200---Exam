@@ -1,22 +1,33 @@
-Project teammates:
+::Project teammates::
 
 
-jacdyb06:	    jadyb9354	Jacob Dyberg-Gulbrandsen
+Name: Jacob Dyberg-Gulbrandsen -> 
+Git: jacdyb06 -> 
+OsloMet ID: jadyb9354
 
 
-JustinTime494:	juhar9593	Justin Charles Harris
+Name: Justin Charles Harris -> 
+Git: JustinTime494 -> 
+OsloMet ID: juhar9593
 
 
-mordahl:	    moped9276	Morgan Dahl Pedersen
+Name: Morgan Dahl Pedersen -> 
+Git: mordahl -> 
+OsloMet ID: moped9276
 
 
-UlrikRas:	    s341921		Ulrik Aastesønn Rasmussen
+Name: Ulrik Aastesønn Rasmussen -> 
+Git: UlrikRas -> 
+OsloMet ID: s341921
 
 
 
 
 
-Icon sources:
+
+
+
+::Icon sources::
 
 https://www.vecteezy.com/vector-art/16184515-set-of-contact-icons-website-set-icon-vector-contact-information-icons-vector-illustration
 
