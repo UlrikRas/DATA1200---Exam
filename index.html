@@ -249,14 +249,14 @@
 
             .sidebar-menu {
                 position: fixed; 
-                top: 55px; 
-                bottom: 0; 
-                left: 0; 
+                top: 55px;
+                bottom: 0;
+                left: 0;
 
-                z-index: 200; 
+                z-index: 200;
 
                 background-color: #fff;
-                border-right: 1px solid rgb(228, 228, 228); 
+                border-right: 1px solid rgb(228, 228, 228);
                 width: 110px;
             }
             .sidebar-menu-link {
@@ -284,6 +284,9 @@
                 bottom: 0;
                 left: 0;
                 width: 110px;
+            }
+            .toggle-hide {
+                visibility: visible;
             }
 
             .main-section {
@@ -491,6 +494,19 @@
                     flex-direction: column;
                 }
             }
+
+            @media (max-height: 850px) {
+                .toggle-hide {
+                    visibility: hidden;
+                }
+
+                .sidebar-menu-link {
+                    height: 40px;
+                }
+                .sidebar-menu-link img {
+                    height: 0;
+                }
+            }
         </style>
     </head>
 
@@ -518,49 +534,49 @@
         <section>
             <nav class="sidebar-menu">
                 <a class="sidebar-menu-link" href="index.html">
-                    <img src="icons/home-icon.png" alt="Home">
+                    <img class="toggle-hide" src="icons/home-icon.png" alt="Home">
                     <div>Home</div>
                 </a>
                 <a class="sidebar-menu-link" href="accessibility.html">
-                    <img src="icons/accessibility-icon.png" alt="Accessibility">
+                    <img class="toggle-hide" src="icons/accessibility-icon.png" alt="Accessibility">
                     <div>Accessibility</div>
                 </a>
                 <a class="sidebar-menu-link" href="git.html">
-                    <img src="icons/github-icon.png" alt="GitHub">
+                    <img class="toggle-hide" src="icons/github-icon.png" alt="GitHub">
                     <div>GitHub</div>
                 </a>
                 <a class="sidebar-menu-link" href="activity.html">
-                    <img src="icons/activity-icon.png" alt="Activit">
+                    <img class="toggle-hide" src="icons/activity-icon.png" alt="Activit">
                     <div>Activity</div>
                 </a>
 
                 <a class="sidebar-menu-link" href="https://www.oslomet.no/studier">
-                    <img src="icons/study-icon.png" alt="Studier">
+                    <img class="toggle-hide" src="icons/study-icon.png" alt="Studier">
                     <div>Studier</div>
                 </a>
                 <a class="sidebar-menu-link" href="https://www.oslomet.no/forskning">
-                    <img src="icons/research-icon.png" alt="Forskningen vår">
+                    <img class="toggle-hide" src="icons/research-icon.png" alt="Forskningen vår">
                     <div>Forskningen vår</div>
                 </a>
                 <a class="sidebar-menu-link" href="https://www.oslomet.no/om/samarbeid">
-                    <img src="icons/teamwork-icon.png" alt="Samarbeid">
+                    <img class="toggle-hide" src="icons/teamwork-icon.png" alt="Samarbeid">
                     <div>Samarbeid</div>
                 </a>
                 <a class="sidebar-menu-link" href="https://www.oslomet.no/ub">
-                    <img src="icons/library-icon.png" alt="Universitetsbiblioteket">
+                    <img class="toggle-hide" src="icons/library-icon.png" alt="Universitetsbiblioteket">
                     <div>Universitetsbiblioteket</div>
                 </a>
                 <a class="sidebar-menu-link" href="https://www.oslomet.no/om/kontakt">
-                    <img src="icons/contact.png" alt="Kontakt oss">
+                    <img class="toggle-hide" src="icons/contact.png" alt="Kontakt oss">
                     <div>Kontakt</div>
                 </a>
                 <a class="sidebar-menu-link" href="https://www.oslomet.no/om/for-studenter">
-                    <img src="icons/students-icon.png" alt="For studenter">
+                    <img class="toggle-hide" src="icons/students-icon.png" alt="For studenter">
                     <div>For studenter</div>
                 </a>
 
                 <a class="sidebar-menu-link sidebar-menu-bottom-link" href="https://www.oslomet.no/om">
-                    <img src="icons/about-icon.png" alt="Om OsloMet">
+                    <img class="toggle-hide" src="icons/about-icon.png" alt="Om OsloMet">
                     <div>Om OsloMet</div>
                 </a>
             </nav>
