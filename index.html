@@ -96,10 +96,6 @@
 
             .header-left-section {
                 margin: 0 25px 0 0;
-
-                /*display: flex;
-                flex-direction: row;
-                align-items: center;*/
             }
             .oslomet-logo {
                 width: 111px;
@@ -176,7 +172,6 @@
 
             .footer {
                 margin-left: 100px;
-                /*width: 100%;*/
 
                 background-color: #fff;
                 border-top: 1px solid rgb(228, 228, 228);
@@ -195,10 +190,13 @@
             .footer-top-inner a {
                 background-color: #000;
                 color: #ffd500;
-                /*text-decoration: none;*/
                 font-weight: 700;
                 line-height: 30px;
                 padding: 20px;
+                max-width: 203px;
+            }
+            .footer-top-inner a:hover {
+                color: #fff;
             }
 
             .footer-bottom {
@@ -211,15 +209,9 @@
                 flex-direction: row;
                 justify-content: space-between;
             }
-            /*.footer-bottom-inner-left {
-                background-color: gray;
+            .footer-bottom-inner-sections {
+                margin-bottom: 50px;
             }
-            .footer-bottom-inner-center {
-                background-color: gray;
-            }
-            .footer-bottom-inner-right {
-                background-color: gray;
-            }*/
             .footer-info {
                 margin-top: 10px;
             }
@@ -246,9 +238,13 @@
                 display: flex; 
                 flex-direction: row; 
                 align-items: center;
+                width: 120px;
             }
             .social-media-links img {
                 margin-right: 10px;
+            }
+            .social-media-links:hover div {
+                text-decoration: underline;
             }
 
             .sidebar-menu {
@@ -332,6 +328,9 @@
                 border-top: 1px solid #000;
                 font-weight: 700;
             }
+            .info-grid-paragraph {
+                font-size: 14px;
+            }
             .study-structure-info-grid {
                 grid-template-columns: 1fr 1fr 1fr;
             }
@@ -397,6 +396,8 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: left;
+                font-size: 15px;
+                margin-top: -10px;
             }
             .suggested-programs-info-container div {
                 padding: 2px 10px;
@@ -411,10 +412,84 @@
             .student-history-button {
                 background-color: #000;
                 color: #ffd500;
-                /*text-decoration: none;
-                line-height: 30px;*/
                 font-weight: 700;
                 padding: 20px;
+            }
+            .student-history-button:hover {
+                color: #fff;
+            }
+
+            @media (min-width: 886px) {
+                .info-grid {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 700px;
+                    max-width: 1000px;
+                }
+            }
+            @media (min-width: 790px) and (max-width: 885px) {
+                .info-grid {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 500px;
+                    max-width: 800px;
+                }
+            }
+            @media (min-width: 660px) and (max-width: 789px) {
+                .info-grid,
+                .study-structure-info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 400px;
+                    max-width: 700px;
+                }
+            }
+            @media (max-width: 659px) {
+                .info-grid,
+                .study-structure-info-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .centering {
+                    min-width: 400px;
+                    max-width: 600px;
+                }
+
+                .suggested-programs-info-container {
+                    font-size: 13px;
+                }
+
+                .main-section-header h1 {
+                    font-size: 27px;
+                }
+                .main-section-header p {
+                    font-size: 16px;
+                }
+                h2 {
+                    font-size: 22px;
+                }
+                p {
+                    font-size: 15px;
+                }
+                ul {
+                    font-size: 15px;
+                }
+
+                .academic-year-header {
+                    font-size: 20px;
+                }
+            }
+            @media (max-width: 750px) {
+                .footer-top-inner,
+                .footer-bottom-inner {
+                    flex-direction: column;
+                }
             }
         </style>
     </head>
@@ -442,6 +517,10 @@
 
         <section>
             <nav class="sidebar-menu">
+                <a class="sidebar-menu-link" href="index.html">
+                    <img src="icons/home-icon.png" alt="Home">
+                    <div>Home</div>
+                </a>
                 <a class="sidebar-menu-link" href="accessibility.html">
                     <img src="icons/accessibility-icon.png" alt="Accessibility">
                     <div>Accessibility</div>
@@ -498,32 +577,32 @@
                 <section class="info-grid">
                     <div>
                         <p>Studiested</p>
-                        <p>Pilestredet i Oslo</p>
+                        <p class="info-grid-paragraph">Pilestredet i Oslo</p>
                     </div>
                     <div>
                         <p>Varighet</p>
-                        <p>3 år</p>
+                        <p class="info-grid-paragraph">3 år</p>
                     </div>
                     <div>
                         <p>Omfang</p>
-                        <p>Heltid</p>
+                        <p class="info-grid-paragraph">Heltid</p>
                     </div>
                     <div>
                         <p>Studiepoeng</p>
-                        <p>180</p>
+                        <p class="info-grid-paragraph">180</p>
                     </div>
                     <div>
                         <p>Studiestart</p>
-                        <p>August</p>
+                        <p class="info-grid-paragraph">August</p>
                     </div>
                     <div>
                         <p>Undervisningsspråk</p>
-                        <p>Norsk</p>
-                        <p>Engelsk</p>
+                        <p class="info-grid-paragraph">Norsk</p>
+                        <p class="info-grid-paragraph">Engelsk</p>
                     </div>
                     <div>
                         <p>Studieplasser</p>
-                        <p>40</p>
+                        <p class="info-grid-paragraph">40</p>
                     </div>
                 </section>
             </section>
@@ -599,19 +678,19 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Diskret matematikk</p>
-                                <p>DAPE1300 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAPE1300 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Programmering</p>
-                                <p>DAPE1400 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAPE1400 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Teknologi og samfunn for programmerere</p>
-                                <p>DATA1100 - 5 stp.</p>
+                                <p class="info-grid-paragraph">DATA1100 - 5 stp.</p>
                             </div>
                             <div>
                                 <p>Innføring i modeller og beregninger</p>
-                                <p>MAMO1100 - 5 stp.</p>
+                                <p class="info-grid-paragraph">MAMO1100 - 5 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -620,15 +699,15 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Matematikk 1000</p>
-                                <p>DAFE1000 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAFE1000 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Fysikk og kjemi</p>
-                                <p>DAPE2101 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAPE2101 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Databaser</p>
-                                <p>DATA1500 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA1500 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -641,11 +720,11 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Matematikk 2000 med statistikk</p>
-                                <p>DAPE2000 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAPE2000 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Moderne fysikk</p>
-                                <p>MAMO2100 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO2100 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -654,7 +733,7 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Matematikk 4000</p>
-                                <p>DAVE3705 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAVE3705 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -663,7 +742,7 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Lineær algebra og introduksjon til gruppeteori</p>
-                                <p>MAMO2300 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO2300 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -672,11 +751,11 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Termodynamikk og statistisk fysikk</p>
-                                <p>MAMO2400 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO2400 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Symmetrier og algebraiske strukturer</p>
-                                <p>MAMO2500 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO2500 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -685,7 +764,7 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Algoritmer og datastrukturer</p>
-                                <p>DATS2300 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATS2300 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -694,15 +773,15 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Statistisk analyse</p>
-                                <p>MAMO3100 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO3100 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>VIsualisering</p>
-                                <p>ADSE3200 - 10 stp.</p>
+                                <p class="info-grid-paragraph">ADSE3200 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Avansert modellering og beregninger</p>
-                                <p>MAMO 2200 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO 2200 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -711,7 +790,7 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Algoritmer og datastrukturer</p>
-                                <p>DATS2300 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATS2300 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -720,11 +799,11 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Ressurseffektive programmer</p>
-                                <p>DAVE3606 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAVE3606 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Avansert modellering og beregninger</p>
-                                <p>MAMO2200 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO2200 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -737,7 +816,7 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Matematikk 3000</p>
-                                <p>DAVE3700 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAVE3700 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -746,7 +825,7 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Bacheloroppgave</p>
-                                <p>DATA3900 - 20 stp.</p>
+                                <p class="info-grid-paragraph">DATA3900 - 20 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -755,23 +834,23 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Reell analyse</p>
-                                <p>MAMO3300 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO3300 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Introduksjon til IT-forskning</p>
-                                <p>DATA3730 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA3730 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Introduction to Data Science with Scripting</p>
-                                <p>DATA3800 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA3800 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Datasikkerhet</p>
-                                <p>ITPE3100 - 10 stp.</p>
+                                <p class="info-grid-paragraph">ITPE3100 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Simulering og visualisering</p>
-                                <p>MAMO3200 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO3200 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -780,19 +859,19 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Testing av programvare</p>
-                                <p>ADTS2310 - 10 stp.</p>
+                                <p class="info-grid-paragraph">ADTS2310 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Datanettverk og skytjenester</p>
-                                <p>DATA2410 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA2410 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Ressurseffektive programmer</p>
-                                <p>DAVE3606 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAVE3606 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Avansert modellering og beregninger</p>
-                                <p>MAMO2200 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO2200 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -801,23 +880,23 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Introduksjon til Kunstig Intelligens</p>
-                                <p>DAVE3625 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAVE3625 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Introduksjon til IT-forskning</p>
-                                <p>DATA3730 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA3730 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Anvendt kunstig intelligens og data science prosjekt</p>
-                                <p>DATA3750 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA3750 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Datasikkerhet</p>
-                                <p>ITPE3100 - 10 stp.</p>
+                                <p class="info-grid-paragraph">ITPE3100 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Simulering og visualisering</p>
-                                <p>MAMO3200 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO3200 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -826,15 +905,15 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Testing av programvare</p>
-                                <p>ADTS2310 - 10 stp.</p>
+                                <p class="info-grid-paragraph">ADTS2310 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Datanettverk og skytjenester</p>
-                                <p>DATA2410 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA2410 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Ressurseffektive programmer</p>
-                                <p>DAVE3606 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DAVE3606 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -843,23 +922,23 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Simulering og visualisering</p>
-                                <p>MAMO3200 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO3200 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Introduksjon til IT-forskning</p>
-                                <p>DATA3730 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA3730 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Datasikkerhet</p>
-                                <p>ITPE3100 - 10 stp.</p>
+                                <p class="info-grid-paragraph">ITPE3100 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Lineær algebra og introduksjon til gruppeteori</p>
-                                <p>MAMO2300 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO2300 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Reell analyse</p>
-                                <p>MAMO3300 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO3300 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -868,19 +947,19 @@
                         <section class="info-grid study-structure-info-grid">
                             <div>
                                 <p>Visualisering</p>
-                                <p>ADSE3200 - 10 stp.</p>
+                                <p class="info-grid-paragraph">ADSE3200 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Testing av programvare</p>
-                                <p>ADTS2310 - 10 stp.</p>
+                                <p class="info-grid-paragraph">ADTS2310 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Datanettverk og skytjenester</p>
-                                <p>DATA2410 - 10 stp.</p>
+                                <p class="info-grid-paragraph">DATA2410 - 10 stp.</p>
                             </div>
                             <div>
                                 <p>Symmetrier og algebraiske strukturer</p>
-                                <p>MAMO2500 - 10 stp.</p>
+                                <p class="info-grid-paragraph">MAMO2500 - 10 stp.</p>
                             </div>
                         </section>
                     </section>
@@ -1109,13 +1188,13 @@
             <section class="footer-top">
                 <div class="footer-top-inner">
                     <h2>Hold deg oppdatert på hva som skjer på OsloMet.</h2>
-                    <a href="https://www.oslomet.no/nyhetsbrev">Abonner på vårt nyhetsbrev!</a>
+                    <a href="https://www.oslomet.no/nyhetsbrev"><div>Abonner på vårt nyhetsbrev!</div></a>
                 </div>
             </section>
 
             <section class="footer-bottom">
                 <div class="footer-bottom-inner">
-                    <section class="footer-bottom-inner-left">
+                    <section class="footer-bottom-inner-sections">
                         <img src="icons/logo-footer.svg" alt="Oslo Metropolitan University banner">
                         <div class="footer-info">
                             <p>Postboks 4, St. Olavs plass</p>
@@ -1124,7 +1203,7 @@
                             <p><a href="https://www.oslomet.no/om/kontakt">Kontakt oss</a></p>
                         </div>
                     </section>
-                    <section class="footer-bottom-inner-center">
+                    <section class="footer-bottom-inner-sections">
                         <div class="footer-links-container">
                             <p><a class="footer-links" href="https://www.oslomet.no/en">English</a></p>
                             <p><a class="footer-links" href="https://www.oslomet.no/alumni">Alumni</a></p>
@@ -1139,7 +1218,7 @@
                             <p><a class="footer-links" href="https://www-admin.oslomet.no/admin/view/content/58148">Admin</a></p>
                         </div>
                     </section>
-                    <section class="footer-bottom-inner-right">
+                    <section class="footer-bottom-inner-sections">
                         <a href="https://www.facebook.com/oslomet/">
                             <div class="social-media-links">
                                 <img src="icons/icon-facebook.svg" alt="OsloMet på Facebook">
