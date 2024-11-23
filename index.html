@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <title>Matematisk modellering og datavitenskap – ingeniør - OsloMet</title>
+        <link rel="icon" type="image/png" href="icons/favicon-32x32.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
+        <style>
+            body {
+                margin: 0;
+                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                background-color: rgb(248, 248, 248);
+                color: #000;
+            }
+            main {
+                min-height: 1000px;
+            }
+            h1, h2 {
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+            }
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+            li {
+                list-style-position: inside;
+            }
+
+            .search-button,
+            .student-overview-button,
+            .arrow-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                cursor: pointer;
+            }
+            .arrow-link {
+                justify-content: left;
+            }
+            .search-button .tooltip,
+            .student-overview-button .tooltip {
+                position: absolute;
+                bottom: -30px;
+
+                opacity: 0;
+                transition: opacity 0.15s;
+
+                pointer-events: none;
+                white-space: nowrap;
+
+                background-color: gray;
+                color: #fff;
+                font-size: 12px;
+                font-weight: 400;
+                padding: 4px 8px;
+                border-radius: 2px;
+            }
+            .search-button:hover .tooltip,
+            .student-overview-button:hover .tooltip {
+                opacity: 1;
+            }
+            .tooltip::after {
+                content: " ";
+                position: absolute;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+            }
+            .tooltip-top::after {
+                bottom: 100%;
+                border-color: transparent transparent gray transparent;
+            }
+
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+
+                z-index: 100;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                height: 55px;
+                background-color: #fff;
+                border-bottom: 1px solid rgb(228, 228, 228);
+            }
+
+            .header-left-section {
+                margin: 0 25px 0 0;
+            }
+            .oslomet-logo {
+                width: 111px;
+                height: 56px;
+            }
+
+            .header-center-section {
+                margin: 0 35px 0 60px;
+                max-width: 400px;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex: 1;
+
+            }
+            .search-bar {
+                flex: 1;
+
+                width: 0;
+                height: 30px;
+
+                padding-left: 10px;
+                border: 1px solid rgb(192, 192, 192);
+                border-radius: 2px;
+                font-size: 16px;
+
+                box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+            }
+            .search-button {
+                margin: 0 10px 0 -1px;
+
+                width: 55px;
+                height: 34px;
+
+                border: 1px solid rgb(192, 192, 192);
+
+                cursor: pointer;
+            }
+            .search-icon {
+                height: 20px;
+                margin-top: 2px;
+            }
+
+            .header-right-section {
+                margin: 0 15px;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            .student-overview-button,
+            .arrow-link {
+                color: #000;
+                text-decoration: underline;
+                font-size: 16px;
+                font-weight: 700;
+            }
+            .student-overview-button {
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                text-decoration: none;
+            }
+            .student-overview-button img,
+            .arrow-link img {
+                margin-right: 10px;
+                transition: margin 0.15s;
+            }
+            .arrow-link:hover img {
+                margin-right: 20px;
+            }
+            .student-overview-button .tooltip {
+                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+            }
+
+            .footer {
+                margin-left: 100px;
+
+                background-color: #fff;
+                border-top: 1px solid rgb(228, 228, 228);
+            }
+
+            .footer-top {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px 40px;
+            }
+            .footer-top-inner {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-top-inner a {
+                background-color: #000;
+                color: #ffd500;
+                font-weight: 700;
+                line-height: 30px;
+                padding: 20px;
+                max-width: 203px;
+            }
+            .footer-top-inner a:hover {
+                color: #fff;
+            }
+
+            .footer-bottom {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px 50px 150px 40px;
+            }
+            .footer-bottom-inner {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-bottom-inner-sections {
+                margin-bottom: 50px;
+            }
+            .footer-info {
+                margin-top: 10px;
+            }
+            .footer-info p {
+                margin: 5px 0;
+                font-weight: 700;
+            }
+
+            .footer-links-container p {
+                margin: 0 0 10px 0;
+            }
+            .footer-links {
+                padding: 5px;
+                border-radius: 2px;
+                transition: background-color 0.15s, color 0.15s;
+            }
+            .footer-links:hover {
+                background-color: #000;
+                color: #ffd500;
+            }
+
+            .social-media-links {
+                margin-bottom: 20px; 
+                display: flex; 
+                flex-direction: row; 
+                align-items: center;
+                width: 120px;
+            }
+            .social-media-links img {
+                margin-right: 10px;
+            }
+            .social-media-links:hover div {
+                text-decoration: underline;
+            }
+
+            .sidebar-menu {
+                position: fixed; 
+                top: 55px;
+                bottom: 0;
+                left: 0;
+
+                z-index: 200;
+
+                background-color: #fff;
+                border-right: 1px solid rgb(228, 228, 228);
+                width: 110px;
+            }
+            .sidebar-menu-link {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                height: 74px;
+
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                font-size: 11px;
+                text-decoration: none;
+                color: #000;
+            }
+            .sidebar-menu-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+            .sidebar-menu-link img {
+                margin: 0 0 4px 0;
+                height: 24px;
+            }
+            .sidebar-menu-bottom-link {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 110px;
+            }
+            .toggle-hide {
+                visibility: visible;
+            }
+
+            .main-section {
+                margin: 80px 30px 0 140px;
+            }
+
+            .main-section-header {
+                margin-bottom: 50px;
+            }
+            .main-section-header h1 {
+                margin-bottom: 0;
+                font-size: 35px;
+            }
+            .main-section-header p {
+                margin: 5px 0 20px 0;
+                font-size: 18px;
+            }
+            .main-section-header-sub {
+                font-weight: 700;
+            }
+
+            .section-header {
+                background-color: #000;
+                color: #ffd500;
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+
+            .info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                column-gap: 20px;
+                row-gap: 20px;
+
+                background-color: #fff;
+                padding: 5px 15px;
+                border: 1px solid rgb(228, 228, 228);
+                border-radius: 5px;
+            }
+            .info-grid p:first-child {
+                padding-top: 10px;
+                border-top: 1px solid #000;
+                font-weight: 700;
+            }
+            .info-grid-paragraph {
+                font-size: 14px;
+            }
+            .study-structure-info-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .academic-year-header {
+                margin-top: 50px;
+                font-size: 23px;
+                background-color: rgb(237 237 237);
+                border: 1px solid rgb(229 226 226);
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+
+            .centering {
+                margin: 70px auto;
+                min-width: 700px;
+                max-width: 1000px;
+            }
+
+            .requirements-section-link {
+                font-weight: 700;
+                text-decoration: underline;
+            }
+
+            .paragraph-content {
+                background-color: #fff;
+                padding: 10px 20px;
+                border: 1px solid rgb(228, 228, 228);
+                border-radius: 5px;
+            }
+            .paragraph-content-link {
+                transition: background-color 0.15s;
+            }
+            .paragraph-content-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+
+            .manager-container {
+                display: grid;
+                grid-template-columns: 110px 1fr;
+            }
+            .manager-picture {
+                width: 100px;
+            }
+            .manager-info p {
+                margin: 0 0 20px 0;
+            }
+            .manager-info p:first-child {
+                font-weight: 700;
+            }
+
+            .suggested-programs-container {
+                padding: 0 20px 10px 20px;
+                border-top: 1px solid rgb(228, 228, 228);
+                transition: background-color 0.15s;
+            }
+            .suggested-programs-container:hover {
+                background-color: #fff;
+            }
+            .suggested-programs-last {
+                border-bottom: 1px solid rgb(228, 228, 228);
+            }
+            .suggested-programs-info-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: left;
+                font-size: 15px;
+                margin-top: -10px;
+            }
+            .suggested-programs-info-container div {
+                padding: 2px 10px;
+            }
+            .suggested-programs-info-container div:first-child {
+                padding: 2px 10px 2px 0;
+            }
+
+            .student-history-button-container {
+                margin-top: 50px;
+            }
+            .student-history-button {
+                background-color: #000;
+                color: #ffd500;
+                font-weight: 700;
+                padding: 20px;
+            }
+            .student-history-button:hover {
+                color: #fff;
+            }
+
+            @media (min-width: 886px) {
+                .info-grid {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 700px;
+                    max-width: 1000px;
+                }
+            }
+            @media (min-width: 790px) and (max-width: 885px) {
+                .info-grid {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 500px;
+                    max-width: 800px;
+                }
+            }
+            @media (min-width: 660px) and (max-width: 789px) {
+                .info-grid,
+                .study-structure-info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 400px;
+                    max-width: 700px;
+                }
+            }
+            @media (max-width: 659px) {
+                .info-grid,
+                .study-structure-info-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .centering {
+                    min-width: 400px;
+                    max-width: 600px;
+                }
+
+                .suggested-programs-info-container {
+                    font-size: 13px;
+                }
+
+                .main-section-header h1 {
+                    font-size: 27px;
+                }
+                .main-section-header p {
+                    font-size: 16px;
+                }
+                h2 {
+                    font-size: 22px;
+                }
+                p {
+                    font-size: 15px;
+                }
+                ul {
+                    font-size: 15px;
+                }
+
+                .academic-year-header {
+                    font-size: 20px;
+                }
+            }
+            @media (max-width: 750px) {
+                .footer-top-inner,
+                .footer-bottom-inner {
+                    flex-direction: column;
+                }
+            }
+
+            @media (max-height: 850px) {
+                .toggle-hide {
+                    visibility: hidden;
+                }
+
+                .sidebar-menu-link {
+                    height: 40px;
+                }
+                .sidebar-menu-link img {
+                    height: 0;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="header-left-section">
+                <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png" alt="Oslo Metropolitan University logo"></a>
+            </div>
+            <div class="header-center-section">
+                <input class="search-bar" type="text" placeholder="Søk">
+                <button class="search-button">
+                    <img class="search-icon" src="icons/search-icon.svg" alt="Søk">
+                    <div class="tooltip tooltip-top">Søk</div>
+                </button>
+            </div>
+            <div class="header-right-section">
+                <a class="student-overview-button" href="https://www.oslomet.no/studier/studieoversikt" target="_blank">
+                    <img src="icons/arrow-left.svg" alt="Studieoversikt">
+                    <span>Studieoversikt</span>
+                    <div class="tooltip tooltip-top">Finn studier</div>
+                </a>
+            </div>
+        </header>
+
+        <section>
+            <nav class="sidebar-menu">
+                <a class="sidebar-menu-link" href="index.html">
+                    <img class="toggle-hide" src="icons/home-icon.png" alt="Home">
+                    <div>Home</div>
+                </a>
+                <a class="sidebar-menu-link" href="accessibility.html">
+                    <img class="toggle-hide" src="icons/accessibility-icon.png" alt="Accessibility">
+                    <div>Accessibility</div>
+                </a>
+                <a class="sidebar-menu-link" href="git.html">
+                    <img class="toggle-hide" src="icons/github-icon.png" alt="GitHub">
+                    <div>GitHub</div>
+                </a>
+                <a class="sidebar-menu-link" href="activity.html">
+                    <img class="toggle-hide" src="icons/activity-icon.png" alt="Activit">
+                    <div>Activity</div>
+                </a>
+
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/studier">
+                    <img class="toggle-hide" src="icons/study-icon.png" alt="Studier">
+                    <div>Studier</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/forskning">
+                    <img class="toggle-hide" src="icons/research-icon.png" alt="Forskningen vår">
+                    <div>Forskningen vår</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/om/samarbeid">
+                    <img class="toggle-hide" src="icons/teamwork-icon.png" alt="Samarbeid">
+                    <div>Samarbeid</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/ub">
+                    <img class="toggle-hide" src="icons/library-icon.png" alt="Universitetsbiblioteket">
+                    <div>Universitetsbiblioteket</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/om/kontakt">
+                    <img class="toggle-hide" src="icons/contact.png" alt="Kontakt oss">
+                    <div>Kontakt</div>
+                </a>
+                <a class="sidebar-menu-link" href="https://www.oslomet.no/om/for-studenter">
+                    <img class="toggle-hide" src="icons/students-icon.png" alt="For studenter">
+                    <div>For studenter</div>
+                </a>
+
+                <a class="sidebar-menu-link sidebar-menu-bottom-link" href="https://www.oslomet.no/om">
+                    <img class="toggle-hide" src="icons/about-icon.png" alt="Om OsloMet">
+                    <div>Om OsloMet</div>
+                </a>
+            </nav>
+        </section>
+
+        <main class="main-section">
+            <section class="centering main-section-header">
+                <h1>Matematisk modellering og datavitenskap – ingeniør</h1>
+                <p class="main-section-header-sub">Bachelorprogram</p>
+                <p>Få innsikt i matematiske modeller og datadrevne metoder som kan løse mange praktiske og samfunnsnyttige oppgaver.</p>
+            </section>
+
+            <section class="centering">
+                <section class="info-grid">
+                    <div>
+                        <p>Studiested</p>
+                        <p class="info-grid-paragraph">Pilestredet i Oslo</p>
+                    </div>
+                    <div>
+                        <p>Varighet</p>
+                        <p class="info-grid-paragraph">3 år</p>
+                    </div>
+                    <div>
+                        <p>Omfang</p>
+                        <p class="info-grid-paragraph">Heltid</p>
+                    </div>
+                    <div>
+                        <p>Studiepoeng</p>
+                        <p class="info-grid-paragraph">180</p>
+                    </div>
+                    <div>
+                        <p>Studiestart</p>
+                        <p class="info-grid-paragraph">August</p>
+                    </div>
+                    <div>
+                        <p>Undervisningsspråk</p>
+                        <p class="info-grid-paragraph">Norsk</p>
+                        <p class="info-grid-paragraph">Engelsk</p>
+                    </div>
+                    <div>
+                        <p>Studieplasser</p>
+                        <p class="info-grid-paragraph">40</p>
+                    </div>
+                </section>
+            </section>
+
+            <section class="centering requirements-section">
+                <h2>Opptakskrav og poeng</h2>
+                <p>For å søke på dette programmet må du ha</p>
+                <ul>
+                    <li><a class="requirements-section-link" href="https://www.samordnaopptak.no/info/opptak/opptak-uhg/" target="_blank">Generell studiekompetanse (samordnaopptak.no)</a> eller <a class="requirements-section-link" href="https://www.oslomet.no/studier/soknad-og-opptak/realkompetanse/realkompetanse-ingenior" target="_blank">oppfylle kravene til realkompetanse</a></li>
+                    <li>Matematikk R1 og R2</li>
+                    <li>Fysikk 1</li>
+                </ul>
+                <p>Det kan være konkurranse om plassene. Ved forrige opptak kom alle kvalifiserte søkere inn.</p>
+                <p>Hvis du mangler generell studiekompetanse eller enkelte fag fra videregående skole, kan du søke på dette studiet om du har <a href="https://www.oslomet.no/studier/tkd/forkurs-ingenior">bestått ettårig forkurs for ingeniørutdanning.</a></p>
+            </section>
+
+            <section class="centering how-to-apply-section">
+                <h2 class="section-header">Slik søker du</h2>
+                <div class="paragraph-content">
+                <p>Du søker på Samordna opptak med studiekode 215 503.</p>
+                <ul>
+                    <li>15. april: ordinær søknadsfrist</li>
+                    <li>1. mars: frist for enkelte søkere</li>
+                </ul>
+                <p>
+                    <a class="arrow-link" href="https://www.oslomet.no/studier/soknad-og-opptak/opptak-til-bachelor-aarsstudier" target="_blank">
+                        <img src="icons/arrow-left.svg" alt="Mer om å søke på bachelor">
+                        <span>Mer om å søke på bachelor</span>
+                    </a>
+                </p></div>
+            </section>
+
+            <section class="centering what-you-learn-section">
+                <section>
+                    <h2>Hva lærer du?</h2>
+                    <p>Bachelor i matematisk modellering og datavitenskap kobler sammen matematikk, informatikk, fysikk og statistikk.</p>
+                    <p>Du får innsikt i matematiske modeller som brukes i praktisk problemløsning blant annet i medisinsk kjemi, biologiske prosesser og ulike samfunnssystemer.</p>
+                    <p>Det første studieåret har du emner i blant annet matematikk, programmering, fysikk og kjemi for å få en felles forståelse av tematikken.</p>
+                    <p>Det siste semesteret skriver du en bacheloroppgave tett knyttet til problemstillinger i arbeidslivet.</p>
+                    <p>Første året velger du hvilken av disse spesialiseringene du vil ta.</p>
+                </section>
+
+                <section style="margin: 30px 0 30px 50px;">
+                    <h3>Statistiske og datadrevne metoder</h3>
+                    <p>Du lærer om hvordan du kan bruke målte data koblet med datadrevne og statistiske metoder til å gjøre beregninger, for eksempel av fremtidige strømpriser.</p>
+                    <p>Du lærer hvordan du kan løse komplekse og sammensatte problemer, og utforske høydimensjonale datatyper. Moderne metoder innen maskinlæring og kunstig intelligens står sentralt.</p>
+                
+                    <h3>Vitenskapelige beregninger</h3>
+                    <p>Du lærer å lage effektive algoritmer, datastrukturer og kildekoder for å løse matematiske og fysiske problemer med numeriske metoder.</p>
+                    <p>Du lærer å utvikle kildekode og metodikk knyttet til medisinsk teknologi, biologiske prosesser og annet.</p>
+                
+                    <h3>Matematikk og fysikk</h3>
+                    <p>Du utforsker algebraiske strukturer, blant annet knyttet til dyp læring og kunstig intelligens.</p>
+                    <p>Du lærer differensialgeometri på flater, gruppeteori og kodeteori; matematiske strukturer, representasjonsteori og kategoriteori.</p>
+                    <p>I fysikk lærer du om termodynamikk og statistisk fysikk.</p>
+                </section>
+
+                <p>
+                    <a class="arrow-link" href="https://student.oslomet.no/studier/-/studieinfo/programplan/HINGMAMO/2024/H%C3%98ST" target="_blank">
+                        <img src="icons/arrow-left.svg" alt="Se programplan på student.oslomet.no">
+                        <span>Se programplan på student.oslomet.no</span>
+                    </a>
+                </p>
+            </section>
+
+            <section class="centering study-structure-section">
+                <h2 class="section-header">Studiets oppbygging</h2>
+
+                <section>
+                    <h3 class="academic-year-header">1. Studieår</h3>
+                    <section>
+                        <h4>1. Semester</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Diskret matematikk</p>
+                                <p class="info-grid-paragraph">DAPE1300 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Programmering</p>
+                                <p class="info-grid-paragraph">DAPE1400 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Teknologi og samfunn for programmerere</p>
+                                <p class="info-grid-paragraph">DATA1100 - 5 stp.</p>
+                            </div>
+                            <div>
+                                <p>Innføring i modeller og beregninger</p>
+                                <p class="info-grid-paragraph">MAMO1100 - 5 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>2. Semester</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Matematikk 1000</p>
+                                <p class="info-grid-paragraph">DAFE1000 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Fysikk og kjemi</p>
+                                <p class="info-grid-paragraph">DAPE2101 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Databaser</p>
+                                <p class="info-grid-paragraph">DATA1500 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+
+                <section>
+                    <h3 class="academic-year-header">2. Studieår</h3>
+                    <section>
+                        <h4>3. Semester</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Matematikk 2000 med statistikk</p>
+                                <p class="info-grid-paragraph">DAPE2000 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Moderne fysikk</p>
+                                <p class="info-grid-paragraph">MAMO2100 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>4. Semester</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Matematikk 4000</p>
+                                <p class="info-grid-paragraph">DAVE3705 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>3. Semester - Emnegruppe: Matematikk og fysikk</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Lineær algebra og introduksjon til gruppeteori</p>
+                                <p class="info-grid-paragraph">MAMO2300 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>4. Semester - Emnegruppe: Matematikk og fysikk</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Termodynamikk og statistisk fysikk</p>
+                                <p class="info-grid-paragraph">MAMO2400 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Symmetrier og algebraiske strukturer</p>
+                                <p class="info-grid-paragraph">MAMO2500 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>3. Semester - Emnegruppe: Statistiske og datadrevne metoder</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Algoritmer og datastrukturer</p>
+                                <p class="info-grid-paragraph">DATS2300 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>4. Semester - Emnegruppe: Statistiske og datadrevne metoder</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Statistisk analyse</p>
+                                <p class="info-grid-paragraph">MAMO3100 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>VIsualisering</p>
+                                <p class="info-grid-paragraph">ADSE3200 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Avansert modellering og beregninger</p>
+                                <p class="info-grid-paragraph">MAMO 2200 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>3. Semester - Emnegruppe: Vitenskapelige beregninger</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Algoritmer og datastrukturer</p>
+                                <p class="info-grid-paragraph">DATS2300 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>4. Semester - Emnegruppe: Vitenskapelige beregninger</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Ressurseffektive programmer</p>
+                                <p class="info-grid-paragraph">DAVE3606 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Avansert modellering og beregninger</p>
+                                <p class="info-grid-paragraph">MAMO2200 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+
+                <section>
+                    <h3 class="academic-year-header">3. Studieår</h3>
+                    <section>
+                        <h4>5. Semester</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Matematikk 3000</p>
+                                <p class="info-grid-paragraph">DAVE3700 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>6. Semester</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Bacheloroppgave</p>
+                                <p class="info-grid-paragraph">DATA3900 - 20 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>5. Semester - Emnegruppe: Matematikk og fysikk</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Reell analyse</p>
+                                <p class="info-grid-paragraph">MAMO3300 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Introduksjon til IT-forskning</p>
+                                <p class="info-grid-paragraph">DATA3730 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Introduction to Data Science with Scripting</p>
+                                <p class="info-grid-paragraph">DATA3800 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Datasikkerhet</p>
+                                <p class="info-grid-paragraph">ITPE3100 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Simulering og visualisering</p>
+                                <p class="info-grid-paragraph">MAMO3200 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>6. Semester - Emnegruppe: Matematikk og fysikk</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Testing av programvare</p>
+                                <p class="info-grid-paragraph">ADTS2310 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Datanettverk og skytjenester</p>
+                                <p class="info-grid-paragraph">DATA2410 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Ressurseffektive programmer</p>
+                                <p class="info-grid-paragraph">DAVE3606 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Avansert modellering og beregninger</p>
+                                <p class="info-grid-paragraph">MAMO2200 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>5. Semester - Statistiske og datadrevne metoder</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Introduksjon til Kunstig Intelligens</p>
+                                <p class="info-grid-paragraph">DAVE3625 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Introduksjon til IT-forskning</p>
+                                <p class="info-grid-paragraph">DATA3730 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Anvendt kunstig intelligens og data science prosjekt</p>
+                                <p class="info-grid-paragraph">DATA3750 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Datasikkerhet</p>
+                                <p class="info-grid-paragraph">ITPE3100 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Simulering og visualisering</p>
+                                <p class="info-grid-paragraph">MAMO3200 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>6. Semester - Emnegruppe: Statistiske og datadrevne metoder</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Testing av programvare</p>
+                                <p class="info-grid-paragraph">ADTS2310 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Datanettverk og skytjenester</p>
+                                <p class="info-grid-paragraph">DATA2410 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Ressurseffektive programmer</p>
+                                <p class="info-grid-paragraph">DAVE3606 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>5. Semester - Emnegruppe: Vitenskapelige beregninger</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Simulering og visualisering</p>
+                                <p class="info-grid-paragraph">MAMO3200 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Introduksjon til IT-forskning</p>
+                                <p class="info-grid-paragraph">DATA3730 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Datasikkerhet</p>
+                                <p class="info-grid-paragraph">ITPE3100 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Lineær algebra og introduksjon til gruppeteori</p>
+                                <p class="info-grid-paragraph">MAMO2300 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Reell analyse</p>
+                                <p class="info-grid-paragraph">MAMO3300 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <h4>6. Semester - Emnegruppe: Vitenskapelige beregninger</h4>
+                        <section class="info-grid study-structure-info-grid">
+                            <div>
+                                <p>Visualisering</p>
+                                <p class="info-grid-paragraph">ADSE3200 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Testing av programvare</p>
+                                <p class="info-grid-paragraph">ADTS2310 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Datanettverk og skytjenester</p>
+                                <p class="info-grid-paragraph">DATA2410 - 10 stp.</p>
+                            </div>
+                            <div>
+                                <p>Symmetrier og algebraiske strukturer</p>
+                                <p class="info-grid-paragraph">MAMO2500 - 10 stp.</p>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+
+            <section class="centering tuition-list-section">
+                <h2>Hvordan foregår undervisningen?</h2>
+                <p>Undervisningen er en kombinasjon av</p>
+                <ul>
+                    <li>Prosjektarbeid</li>
+                    <li>Workshop</li>
+                    <li>Presentasjoner</li>
+                    <li>Veiledninger</li>
+                    <li>Diskusjoner og Refleksjoner</li>
+                    <li>Forelesninger</li>
+                    <li>Selvstudier</li>
+                    <li>Gruppearbeid</li>
+                    <li>Arbeidslivsrelevant bacheloroppgave</li>
+                </ul>
+                <p>For å gjennomføre studiet på normert tid, må du regne med å bruke om lag 40 timer per uke på studierelatert arbeid gjennom hele semesteret.</p>
+            </section>
+
+            <section class="centering tuition-cost-section">
+                <h2 class="section-header">Hva koster det?</h2>
+                <div class="paragraph-content">
+                <p><a href="https://student.oslomet.no/semesteravgift">Du betaler en semesteravgift hvert semester (student.oslomet.no).</a></p>
+                <p>
+                    <a href="https://student.oslomet.no/studieavgift-for-internasjonale-studenter-utenfor-eu-eos">Er du internasjonal student fra utenfor EU og EØS, må du betale studieavgift (student.oslomet.no)</a>.
+                    Det er mulig å søke om unntak for betaling av denne studieavgiften.
+                </p>
+                </div>
+            </section>
+
+            <section class="centering work-opportunities-section">
+                <h2>Hva kan du jobbe som?</h2>
+                <p>Med dette studiet får du IT-kompetanse som er etterspurt i arbeidslivet, særlig om du velger spesialiseringene vitenskapelige beregninger eller statistiske og datadrevne metoder.</p>
+                <p>Spesialiseringen i matematikk og fysikk retter seg mer mot videre studier, men også her får du etterspurt kompetanse i arbeidslivet etter bachelorstudiet.</p>
+                <p>Matematisk modellering og datavitenskap blir stadig viktigere som basisgrunnlag, i for eksempel beregninger knyttet til klima, forsikring og finans, og datadrevne metoder for verdiskaping.</p>
+                <p>Datadrevne metoder og maskinlæring er i dag svært mye brukt i arbeidslivet.</p>
+            </section>
+
+            <section class="centering foreign-exchange-section">
+                <h2 class="section-header">Utveksling</h2>
+                <p class="paragraph-content">Du kan dra på utveksling i femte semester.</p>
+            </section>
+
+            <section class="centering masters-studies-section">
+                <h2>Videre studiemuligheter ved OsloMet</h2>
+                <a href="https://www.oslomet.no/studier/tkd/anvendt-data-informasjonsteknologi" target="_blank">
+                    <div class="suggested-programs-container suggested-programs-last">
+                        <h3>Anvendt data- og informasjonsteknologi (ACIT)</h3>
+                        <p>
+                            <div class="suggested-programs-info-container">
+                                <div>Masterprogram</div>&#124;
+                                <div>2 år</div>&#124;
+                                <div>Pilestredet i Oslo</div>&#124;
+                                <div>Heltid</div>
+                            </div>
+                        </p>
+                    </div>
+                </a>
+            </section>
+
+            <section class="centering place-of-study-section">
+                <h2 class="section-header">Studiested</h2>
+                <p class="paragraph-content">
+                    <a class="arrow-link" href="https://www.oslomet.no/om/studiested-pilestredet" target="_blank">
+                        <img src="icons/arrow-left.svg" alt="Studiested Pilestredet">
+                        <span>Studiested Pilestredet</span>
+                    </a>
+                </p>
+            </section>
+
+            <section class="centering education-questions-section">
+                <h2>Spørsmål om utdanningen?</h2>
+                <p>
+                    <a class="arrow-link" href="https://www.oslomet.no/kontaktskjema#For%20utdanningss%C3%B8kere?faculty=Fakultet%20for%20teknologi,%20kunst%20og%20design" target="_blank">
+                        <img src="icons/arrow-left.svg" alt="Spørsmål om utdanningen?">
+                        <span>Har du spørsmål om utdanningen, kontakt oss gjennom vårt kontaktskjema.</span>
+                    </a>
+                </p>
+            </section>
+
+            <section class="centering manager-section">
+                <h2 class="section-header">Faglig leder</h1>
+                <a class="manager-container paragraph-content paragraph-content-link" href="https://www.oslomet.no/om/ansatt/krhel3944/" target="_blank">
+                    <img class="manager-picture" src="pictures/manager-profile.jpg" alt="Faglig leder Kristoffer Herland Hellton">
+                    <div class="manager-info">
+                        <p>Kristoffer Herland Hellton</p>
+                        <p>Førsteamanuensis</p>
+                        <p>+47 672 37 240 &#124; kristoffer.hellton@oslomet.no</p>
+                    </div>
+                </a>
+            </section>
+
+            <section class="centering suggested-programs-section">
+                <h2>Du er kanskje også interessert i disse?</h2>
+                <section>
+                    <a href="https://www.oslomet.no/studier/tkd/anvendt-datateknologi" target="_blank">
+                        <div class="suggested-programs-container">
+                            <h3>Anvendt datateknologi</h3>
+                            <p>
+                                <div class="suggested-programs-info-container">
+                                    <div>Bachelorprogram</div>&#124;
+                                    <div>3 år</div>&#124;
+                                    <div>Pilestredet i Oslo</div>&#124;
+                                    <div>Heltid</div>
+                                </div>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="https://www.oslomet.no/studier/tkd/bioteknologi-kjemiingenior" target="_blank">
+                        <div class="suggested-programs-container">
+                            <h3>Bioteknologi- og kjemiingeniør</h3>
+                            <p>
+                                <div class="suggested-programs-info-container">
+                                    <div>Bachelorprogram</div>&#124;
+                                    <div>3 år</div>&#124;
+                                    <div>Pilestredet i Oslo</div>&#124;
+                                    <div>Heltid</div>
+                                </div>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="https://www.oslomet.no/studier/tkd/byggingenior" target="_blank">
+                        <div class="suggested-programs-container">
+                            <h3>Byggingeniør</h3>
+                            <p>
+                                <div class="suggested-programs-info-container">
+                                    <div>Bachelorprogram</div>&#124;
+                                    <div>3 år</div>&#124;
+                                    <div>Pilestredet i Oslo</div>&#124;
+                                    <div>Heltid</div>
+                                </div>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="https://www.oslomet.no/studier/tkd/dataingenior" target="_blank">
+                        <div class="suggested-programs-container">
+                            <h3>Dataingeniør</h3>
+                            <p>
+                                <div class="suggested-programs-info-container">
+                                    <div>Bachelorprogram</div>&#124;
+                                    <div>3 år</div>&#124;
+                                    <div>Pilestredet i Oslo</div>&#124;
+                                    <div>Heltid</div>
+                                </div>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="https://www.oslomet.no/studier/tkd/elektronikkingenior" target="_blank">
+                        <div class="suggested-programs-container">
+                            <h3>Elektronikkingeniør</h3>
+                            <p>
+                                <div class="suggested-programs-info-container">
+                                    <div>Bachelorprogram</div>&#124;
+                                    <div>3 år</div>&#124;
+                                    <div>Pilestredet i Oslo</div>&#124;
+                                    <div>Heltid</div>
+                                </div>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="https://www.oslomet.no/studier/tkd/informasjonsteknologi" target="_blank">
+                        <div class="suggested-programs-container">
+                            <h3>Informasjonsteknologi</h3>
+                            <p>
+                                <div class="suggested-programs-info-container">
+                                    <div>Bachelorprogram</div>&#124;
+                                    <div>3 år</div>&#124;
+                                    <div>Pilestredet i Oslo</div>&#124;
+                                    <div>Heltid</div>
+                                </div>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="https://www.oslomet.no/studier/tkd/maskiningenior" target="_blank">
+                        <div class="suggested-programs-container">
+                            <h3>Maskiningeniør</h3>
+                            <p>
+                                <div class="suggested-programs-info-container">
+                                    <div>Bachelorprogram</div>&#124;
+                                    <div>3 år</div>&#124;
+                                    <div>Pilestredet i Oslo</div>&#124;
+                                    <div>Heltid</div>
+                                </div>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="https://www.oslomet.no/studier/tkd/tre-termin-ingenior" target="_blank">
+                        <div class="suggested-programs-container">
+                            <h3>Tre-terminsordning til ingeniørutdanning</h3>
+                            <p>
+                                <div class="suggested-programs-info-container">
+                                    <div>Bachelorprogram</div>&#124;
+                                    <div>3 år</div>&#124;
+                                    <div>Pilestredet i Oslo</div>&#124;
+                                    <div>Heltid</div>
+                                </div>
+                            </p>
+                        </div>
+                    </a>
+                </section>
+            </section>
+
+            <section class="centering student-history-section">
+                <h2 class="section-header">Studenthistorier</h2>
+                
+                <a href="https://www.oslomet.no/studier/studenthistorier/spa-fremtiden-matematikk-datavitenskap" target="_blank">
+                    <div class="paragraph-content paragraph-content-link">
+                    <p>
+                        <h3>Teknologi og design: Spå fremtiden med matematikk og datavitenskap</h3>
+                        <p>Har du lyst til å finne ut hva som vil skje i fremtiden? Lær å bruke verktøy for å forutsi alt fra været og strømprisene til utviklingen i boligmarkedet.</p>
+                    </p>
+                    </div>
+                </a>
+
+                <p class="student-history-button-container">
+                    <a class="student-history-button" href="https://www.oslomet.no/studier/studenthistorier">Flere studenthistorier</a>
+                </p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <section class="footer-top">
+                <div class="footer-top-inner">
+                    <h2>Hold deg oppdatert på hva som skjer på OsloMet.</h2>
+                    <a href="https://www.oslomet.no/nyhetsbrev"><div>Abonner på vårt nyhetsbrev!</div></a>
+                </div>
+            </section>
+
+            <section class="footer-bottom">
+                <div class="footer-bottom-inner">
+                    <section class="footer-bottom-inner-sections">
+                        <img src="icons/logo-footer.svg" alt="Oslo Metropolitan University banner">
+                        <div class="footer-info">
+                            <p>Postboks 4, St. Olavs plass</p>
+                            <p>0130 Oslo</p>
+                            <p>Tlf.: 67 23 50 00</p>
+                            <p><a href="https://www.oslomet.no/om/kontakt">Kontakt oss</a></p>
+                        </div>
+                    </section>
+                    <section class="footer-bottom-inner-sections">
+                        <div class="footer-links-container">
+                            <p><a class="footer-links" href="https://www.oslomet.no/en">English</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/alumni">Alumni</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/ansatteoversikt">Ansatteoversikt</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/arrangement/arrangementsoversikt">Arrangementsoversikt</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/for-ansatte">For ansatte</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/for-studenter">For studenter</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/ledige-stillinger">Ledige stillinger</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/personvernerklering-informasjonskapslar">Personvernerklæring og informasjonskapslar</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/pressekontakt">Pressekontakt</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/tilgjengelegheitserklering">Tilgjengelegheitserklæring</a></p>
+                            <p><a class="footer-links" href="https://www-admin.oslomet.no/admin/view/content/58148">Admin</a></p>
+                        </div>
+                    </section>
+                    <section class="footer-bottom-inner-sections">
+                        <a href="https://www.facebook.com/oslomet/">
+                            <div class="social-media-links">
+                                <img src="icons/icon-facebook.svg" alt="OsloMet på Facebook">
+                                <div>Facebook</div>
+                            </div>
+                        </a>
+                        <a href="https://twitter.com/oslomet">
+                            <div class="social-media-links">
+                                <img src="icons/icon-twitter.png" alt="OsloMet på X (Twitter)">
+                                <div>X (Twitter)</div>
+                            </div>
+                        </a>
+                        <a href="https://no.linkedin.com/school/oslomet/">
+                            <div class="social-media-links">
+                                <img src="icons/icon-linkedin.svg" alt="OsloMet på LinkedIn">
+                                <div>LinkedIn</div>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/oslomet/?hl=nb">
+                            <div class="social-media-links">
+                                <img src="icons/icon-instagram.svg" alt="OsloMet på Instagram">
+                                <div>Instagram</div>
+                            </div>
+                        </a>
+                    </section>
+                </div>
+            </section>
+        </footer>
+    </body>
+</html>
