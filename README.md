@@ -1,4 +1,31 @@
-Icon sources:
+::Project teammates::
+
+
+Name: Jacob Dyberg-Gulbrandsen -> 
+Git: jacdyb06 -> 
+OsloMet ID: jadyb9354
+
+
+Name: Justin Charles Harris -> 
+Git: JustinTime494 -> 
+OsloMet ID: juhar9593
+
+
+Name: Morgan Dahl Pedersen -> 
+Git: mordahl -> 
+OsloMet ID: moped9276
+
+
+Name: Ulrik Aastesønn Rasmussen -> 
+Git: UlrikRas -> 
+OsloMet ID: s341921
+
+
+
+
+
+
+::Icon sources::
 
 https://www.vecteezy.com/vector-art/16184515-set-of-contact-icons-website-set-icon-vector-contact-information-icons-vector-illustration
 
