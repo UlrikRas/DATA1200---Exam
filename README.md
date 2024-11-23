@@ -1,12 +1,25 @@
 ::Project teammates::
 
-jacdyb06:	    jadyb9354	Jacob Dyberg-Gulbrandsen
 
-JustinTime494:	juhar9593	Justin Charles Harris
+Name: Jacob Dyberg-Gulbrandsen
+Git: jacdyb06
+OsloMet ID: jadyb9354
 
-mordahl:	    moped9276	Morgan Dahl Pedersen
 
-UlrikRas:	    s341921		Ulrik Aastesønn Rasmussen
+Name: Justin Charles Harris
+Git: JustinTime494
+OsloMet ID: juhar9593
+
+
+Name: Morgan Dahl Pedersen
+Git: mordahl
+OsloMet ID: moped9276
+
+
+Name: Ulrik Aastesønn Rasmussen
+Git: UlrikRas
+OsloMet ID: s341921
+
 
 
 
