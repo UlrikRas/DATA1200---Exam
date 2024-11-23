@@ -1,0 +1,44 @@
+<header>
+        <h1>Accessibility for Oslo Met</h1>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Our Commitment</h2>
+            <p>We are committed to making our website accessible to everyone, including people with disabilities. If you encounter any issues, please let us know.</p>
+        </section>
+        
+        <section>
+            <h2>Standards</h2>
+            <p>Our website strives to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.</p>
+        </section>
+        
+        <section>
+            <h2>Accessibility Features</h2>
+            <ul>
+                <li><strong>Keyboard Navigation:</strong> Navigate our site without a mouse.</li>
+                <li><strong>Alt Text:</strong> Images include descriptive alt text.</li>
+                <li><strong>High Contrast Mode:</strong> Colors ensure readability.</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Feedback</h2>
+            <p>We welcome feedback on the accessibility of our website. If you encounter any issues, please contact us:</p>
+            <ul>
+                <li>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></li>
+                <li>Feedback Form: <a href="https://example.com/accessibility-feedback" target="_blank">Submit feedback</a></li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Limitations</h2>
+            <p>We are continually working to improve our accessibility. Some content may not yet meet standards, and we welcome your input to address these gaps.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Thank you for helping us make our website better for everyone!</p>
+    </footer>
+</body>
+</html>
