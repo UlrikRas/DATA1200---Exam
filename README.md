@@ -1,4 +1,18 @@
-Icon sources:
+::Project teammates::
+
+jacdyb06:	    jadyb9354	Jacob Dyberg-Gulbrandsen
+
+JustinTime494:	juhar9593	Justin Charles Harris
+
+mordahl:	    moped9276	Morgan Dahl Pedersen
+
+UlrikRas:	    s341921		Ulrik Aastesønn Rasmussen
+
+
+
+
+
+::Icon sources::
 
 https://www.vecteezy.com/vector-art/16184515-set-of-contact-icons-website-set-icon-vector-contact-information-icons-vector-illustration
 
