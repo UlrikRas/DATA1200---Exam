@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Math Competitions</title>
+    <style>
+        /* OsloMet-inspired styles */
+        body {
+                margin: 0;
+                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                background-color: rgb(248, 248, 248);
+                color: #000;
+            }
+            h1, h2, h3 {
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+            } 
+        
+            .search-button,
+            .student-overview-button,
+            .arrow-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                cursor: pointer;
+            }
+            .arrow-link {
+                justify-content: left;
+            }
+            .search-button .tooltip,
+            .student-overview-button .tooltip {
+                position: absolute;
+                bottom: -30px;
+
+                opacity: 0;
+                transition: opacity 0.15s;
+
+                pointer-events: none;
+                white-space: nowrap;
+
+                background-color: gray;
+                color: #fff;
+                font-size: 12px;
+                font-weight: 400;
+                padding: 4px 8px;
+                border-radius: 2px;
+            }
+            .search-button:hover .tooltip,
+            .student-overview-button:hover .tooltip {
+                opacity: 1;
+            }
+            .tooltip::after {
+                content: " ";
+                position: absolute;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+            }
+            .tooltip-top::after {
+                bottom: 100%;
+                border-color: transparent transparent gray transparent;
+            }
+
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+
+                z-index: 100;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                height: 55px;
+                background-color: #fff;
+                border-bottom: 1px solid rgb(228, 228, 228);
+            }
+
+            .header-left-section {
+                margin: 0 25px 0 0;
+            }
+            .oslomet-logo {
+                width: 111px;
+                height: 56px;
+            }
+
+            .header-center-section {
+                margin: 0 35px 0 60px;
+                max-width: 400px;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex: 1;
+
+            }
+            .search-bar {
+                flex: 1;
+
+                width: 0;
+                height: 30px;
+
+                padding-left: 10px;
+                border: 1px solid rgb(192, 192, 192);
+                border-radius: 2px;
+                font-size: 16px;
+
+                box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+            }
+            .search-button {
+                margin: 0 10px 0 -1px;
+
+                width: 55px;
+                height: 34px;
+
+                border: 1px solid rgb(192, 192, 192);
+
+                cursor: pointer;
+            }
+            .search-icon {
+                height: 20px;
+                margin-top: 2px;
+            }
+
+            .header-right-section {
+                margin: 0 15px;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            .student-overview-button,
+            .arrow-link {
+                color: #000;
+                text-decoration: underline;
+                font-size: 16px;
+                font-weight: 700;
+            }
+            .student-overview-button {
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                text-decoration: none;
+            }
+            .student-overview-button img,
+            .arrow-link img {
+                margin-right: 10px;
+                transition: margin 0.15s;
+            }
+            .arrow-link:hover img {
+                margin-right: 20px;
+            }
+            .student-overview-button .tooltip {
+                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+            }
+
+            .sidebar-menu {
+                position: fixed; 
+                top: 55px;
+                bottom: 0;
+                left: 0;
+
+                z-index: 200;
+
+                background-color: #fff;
+                border-right: 1px solid rgb(228, 228, 228);
+                width: 110px;
+            }
+            .sidebar-menu-link {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                height: 74px;
+
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                font-size: 11px;
+                text-decoration: none;
+                color: #000;
+            }
+            .sidebar-menu-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+            .sidebar-menu-link img {
+                margin: 0 0 4px 0;
+                height: 24px;
+            }
+            .sidebar-menu-bottom-link {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 110px;
+            }
+            .toggle-hide {
+                visibility: visible;
+            }
+
+            .footer {
+                margin-left: 100px;
+
+                background-color: #fff;
+                border-top: 1px solid rgb(228, 228, 228);
+            }
+
+            .footer-top {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px 40px;
+            }
+            .footer-top-inner {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-top-inner a {
+                background-color: #000;
+                color: #ffd500;
+                font-weight: 700;
+                line-height: 30px;
+                padding: 20px;
+                max-width: 203px;
+            }
+            .footer-top-inner a:hover {
+                color: #fff;
+            }
+
+            .footer-bottom {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px 50px 150px 40px;
+            }
+            .footer-bottom-inner {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-bottom-inner-sections {
+                margin-bottom: 50px;
+            }
+            .footer-info {
+                margin-top: 10px;
+            }
+            .footer-info p {
+                margin: 5px 0;
+                font-weight: 700;
+            }
+
+            .footer-links-container p {
+                margin: 0 0 10px 0;
+            }
+            .footer-links {
+                padding: 5px;
+                border-radius: 2px;
+                transition: background-color 0.15s, color 0.15s;
+            }
+            .footer-links:hover {
+                background-color: #000;
+                color: #ffd500;
+            }
+
+            .social-media-links {
+                margin-bottom: 20px; 
+                display: flex; 
+                flex-direction: row; 
+                align-items: center;
+                width: 120px;
+            }
+            .social-media-links img {
+                margin-right: 10px;
+            }
+            .social-media-links:hover div {
+                text-decoration: underline;
+            }
+
+            .sidebar-menu {
+                position: fixed; 
+                top: 55px;
+                bottom: 0;
+                left: 0;
+
+                z-index: 200;
+
+                background-color: #fff;
+                border-right: 1px solid rgb(228, 228, 228);
+                width: 110px;
+            }
+            .sidebar-menu-link {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                height: 74px;
+
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                font-size: 11px;
+                text-decoration: none;
+                color: #000;
+            }
+            .sidebar-menu-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+            .sidebar-menu-link img {
+                margin: 0 0 4px 0;
+                height: 24px;
+            }
+            .sidebar-menu-bottom-link {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 110px;
+            }
+            .toggle-hide {
+                visibility: visible;
+            }
+           
+            .section {
+                margin: 70px auto;
+                min-width: 700px;
+                max-width: 1000px;
+            }
+            .section h1 {
+                margin-bottom: 0;
+                font-size: 35px;
+            }
+            h3 {
+                background-color: #000;
+                color: #ffd500;
+                padding: 5px 10px;
+                padding-left: 20px;
+                border-radius: 3px;
+            }
+    </style>
+</head>
+<body>
+    <header class="header"> <!--HTML fra html.index for å reprodusere headeren-->
+        <div class="header-left-section">
+            <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png" alt="Oslo Metropolitan University logo"></a>
+        </div>
+        <div class="header-center-section">
+            <input class="search-bar" type="text" placeholder="Søk">
+            <button class="search-button">
+                <img class="search-icon" src="icons/search-icon.svg" alt="Søk">
+                <div class="tooltip tooltip-top">Søk</div>
+            </button>
+        </div>
+        <div class="header-right-section">
+            <a class="student-overview-button" href="https://www.oslomet.no/studier/studieoversikt" target="_blank">
+                <img src="icons/arrow-left.svg" alt="Studieoversikt">
+                <span>Studieoversikt</span>
+                <div class="tooltip tooltip-top">Finn studier</div>
+            </a>
+        </div>
+    </header>
+
+    <section> <!--HTML fra html.index for å reprodusere naviasjonsmenyen-->
+        <nav class="sidebar-menu">
+            <a class="sidebar-menu-link" href="index.html">
+                <img class="toggle-hide" src="icons/home-icon.png" alt="Home">
+                <div>Home</div>
+            </a>
+            <a class="sidebar-menu-link" href="accessibility.html">
+                <img class="toggle-hide" src="icons/accessibility-icon.png" alt="Accessibility">
+                <div>Accessibility</div>
+            </a>
+            <a class="sidebar-menu-link" href="git.html">
+                <img class="toggle-hide" src="icons/github-icon.png" alt="GitHub">
+                <div>GitHub</div>
+            </a>
+            <a class="sidebar-menu-link" href="activity.html">
+                <img class="toggle-hide" src="icons/activity-icon.png" alt="Activit">
+                <div>Activity</div>
+            </a>
+
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/studier">
+                <img class="toggle-hide" src="icons/study-icon.png" alt="Studier">
+                <div>Studier</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/forskning">
+                <img class="toggle-hide" src="icons/research-icon.png" alt="Forskningen vår">
+                <div>Forskningen vår</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/samarbeid">
+                <img class="toggle-hide" src="icons/teamwork-icon.png" alt="Samarbeid">
+                <div>Samarbeid</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/ub">
+                <img class="toggle-hide" src="icons/library-icon.png" alt="Universitetsbiblioteket">
+                <div>Universitetsbiblioteket</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/kontakt">
+                <img class="toggle-hide" src="icons/contact.png" alt="Kontakt oss">
+                <div>Kontakt</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/for-studenter">
+                <img class="toggle-hide" src="icons/students-icon.png" alt="For studenter">
+                <div>For studenter</div>
+            </a>
+
+            <a class="sidebar-menu-link sidebar-menu-bottom-link" href="https://www.oslomet.no/om">
+                <img class="toggle-hide" src="icons/about-icon.png" alt="Om OsloMet">
+                <div>Om OsloMet</div>
+            </a>
+        </nav>
+    </section>
+
+    <section>
+        <h1>Excel in Math Competitions</h1>
+        <p>Challenge yourself and sharpen your problem-solving skills!</p>
+    </section>
+
+
+    <section>
+        <h1>What Are Math Competitions?</h2>
+        <p>
+            Math competitions are opportunities for students to apply mathematical thinking and problem-solving in a competitive environment. They range from school-level contests to international championships. 
+            Learn more about their significance at <a href="https://www.maa.org/math-competitions" target="_blank">MAA Math Competitions</a>.
+        </p>
+        <img src="https://www.thekidstory.com/wp-content/uploads/2015/11/lovemath1-1.jpg" alt="Students solving math problems">
+    </section>
+
+
+    <section>
+        <h3>Popular Math Competitions</h3>
+        <p>
+            Some of the most renowned competitions include:
+            <ul>
+                <li>
+                    The <a href="https://www.imo-official.org/" target="_blank">International Mathematical Olympiad (IMO)</a>, which is the premier global math competition.
+                </li>
+                <li>
+                    The <a href="https://www.amc-reg.maa.org/" target="_blank">American Mathematics Competitions (AMC)</a>, a stepping stone to advanced math challenges.
+                </li>
+                <li>
+                    The <a href="https://artofproblemsolving.com/" target="_blank">Art of Problem Solving (AoPS)</a>, which offers a wealth of resources and competitions for all levels.
+                </li>
+            </ul>
+        </p>
+        <img src="https://www.ndu.edu.lb/ContentFiles/15467Image.jpg?w=870&h=581&scale=both" alt="Math competition trophy">
+    </section>
+    
+    <section>
+        <h3>How to Prepare</h3>
+        <p>
+            Success in math competitions requires preparation and strategy. Consider the following tips:
+            <ul>
+                <li>Practice regularly with past papers from <a href="https://www.pastpapers.net/" target="_blank">Past Papers Net</a>.</li>
+                <li>Join online forums such as the <a href="https://artofproblemsolving.com/community" target="_blank">AoPS Community</a> to discuss challenging problems.</li>
+                <li>Use resources from <a href="https://brilliant.org/" target="_blank">Brilliant.org</a> to build problem-solving skills.</li>
+            </ul>
+        </p>
+        <img src="https://www.nordangliaeducation.com/bsb-shunyi/-/media/bsb-shunyi/academic-excellence/y9-students.jpg?rev=80604bd54a634ebb94c8e7073f4a2943&hash=48BCD9484F713DF1FBB9DE846D1EE6CD" alt="Student preparing for competition">
+    </section>
+
+    <section>
+        <h3>Join a Math Club</h3>
+        <p>
+            Joining a math club or group can help you stay motivated and connect with like-minded individuals. Many schools and universities have active clubs, or you can find online communities such as 
+            <a href="https://www.mathcounts.org/" target="_blank">MathCounts</a>.
+        </p>
+        <img src="https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_3/v1724081408/ahschool/rfdxiz5srxlg1d2q2hdx/2024PBMathNationalCompetition1080x566.png" alt="Math club members working together">
+    </section>
+
+    <footer class="footer">
+        <section class="footer-top">
+            <div class="footer-top-inner">
+                <h2>Hold deg oppdatert på hva som skjer på OsloMet.</h2>
+                <a href="https://www.oslomet.no/nyhetsbrev">Abonner på vårt nyhetsbrev!</a>
+            </div>
+        </section>
+
+        <section class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <section class="footer-bottom-inner-left">
+                    <img src="icons/logo-footer.svg">
+                    <div class="footer-info">
+                        <p>Postboks 4, St. Olavs plass</p>
+                        <p>0130 Oslo</p>
+                        <p>Tlf.: 67 23 50 00</p>
+                        <p><a href="https://www.oslomet.no/om/kontakt">Kontakt oss</a></p>
+                    </div>
+                </section>
+                <section class="footer-bottom-inner-center">
+                    <div class="footer-links-container">
+                        <p><a class="footer-links" href="https://www.oslomet.no/en">English</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/alumni">Alumni</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/ansatteoversikt">Ansatteoversikt</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/arrangement/arrangementsoversikt">Arrangementsoversikt</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/for-ansatte">For ansatte</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/for-studenter">For studenter</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/ledige-stillinger">Ledige stillinger</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/personvernerklering-informasjonskapslar">Personvernerklæring og informasjonskapslar</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/pressekontakt">Pressekontakt</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/tilgjengelegheitserklering">Tilgjengelegheitserklæring</a></p>
+                        <p><a class="footer-links" href="https://www-admin.oslomet.no/admin/view/content/58148">Admin</a></p>
+                    </div>
+                </section>
+                <section class="footer-bottom-inner-right">
+                    <a href="https://www.facebook.com/oslomet/">
+                        <div class="social-media-links">
+                            <img src="icons/icon-facebook.svg">
+                            <div>Facebook</div>
+                        </div>
+                    </a>
+                    <a href="https://twitter.com/oslomet">
+                        <div class="social-media-links">
+                            <img src="icons/icon-twitter.png">
+                            <div>X (Twitter)</div>
+                        </div>
+                    </a>
+                    <a href="https://no.linkedin.com/school/oslomet/">
+                        <div class="social-media-links">
+                            <img src="icons/icon-linkedin.svg">
+                            <div>LinkedIn</div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/oslomet/?hl=nb">
+                        <div class="social-media-links">
+                            <img src="icons/icon-instagram.svg">
+                            <div>Instagram</div>
+                        </div>
+                    </a>
+                </section>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
