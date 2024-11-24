@@ -4,20 +4,413 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git page</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+                margin: 0;
+                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                background-color: rgb(248, 248, 248);
+                color: #000;
+            }
+            h1, h2, h3 {
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+            } 
+        
+            .search-button,
+            .student-overview-button,
+            .arrow-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                cursor: pointer;
+            }
+            .arrow-link {
+                justify-content: left;
+            }
+            .search-button .tooltip,
+            .student-overview-button .tooltip {
+                position: absolute;
+                bottom: -30px;
+
+                opacity: 0;
+                transition: opacity 0.15s;
+
+                pointer-events: none;
+                white-space: nowrap;
+
+                background-color: gray;
+                color: #fff;
+                font-size: 12px;
+                font-weight: 400;
+                padding: 4px 8px;
+                border-radius: 2px;
+            }
+            .search-button:hover .tooltip,
+            .student-overview-button:hover .tooltip {
+                opacity: 1;
+            }
+            .tooltip::after {
+                content: " ";
+                position: absolute;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+            }
+            .tooltip-top::after {
+                bottom: 100%;
+                border-color: transparent transparent gray transparent;
+            }
+
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+
+                z-index: 100;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                height: 55px;
+                background-color: #fff;
+                border-bottom: 1px solid rgb(228, 228, 228);
+            }
+
+            .header-left-section {
+                margin: 0 25px 0 0;
+            }
+            .oslomet-logo {
+                width: 111px;
+                height: 56px;
+            }
+
+            .header-center-section {
+                margin: 0 35px 0 60px;
+                max-width: 400px;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex: 1;
+
+            }
+            .search-bar {
+                flex: 1;
+
+                width: 0;
+                height: 30px;
+
+                padding-left: 10px;
+                border: 1px solid rgb(192, 192, 192);
+                border-radius: 2px;
+                font-size: 16px;
+
+                box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+            }
+            .search-button {
+                margin: 0 10px 0 -1px;
+
+                width: 55px;
+                height: 34px;
+
+                border: 1px solid rgb(192, 192, 192);
+
+                cursor: pointer;
+            }
+            .search-icon {
+                height: 20px;
+                margin-top: 2px;
+            }
+
+            .header-right-section {
+                margin: 0 15px;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            .student-overview-button,
+            .arrow-link {
+                color: #000;
+                text-decoration: underline;
+                font-size: 16px;
+                font-weight: 700;
+            }
+            .student-overview-button {
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                text-decoration: none;
+            }
+            .student-overview-button img,
+            .arrow-link img {
+                margin-right: 10px;
+                transition: margin 0.15s;
+            }
+            .arrow-link:hover img {
+                margin-right: 20px;
+            }
+            .student-overview-button .tooltip {
+                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+            }
+
+            .sidebar-menu {
+                position: fixed; 
+                top: 55px;
+                bottom: 0;
+                left: 0;
+
+                z-index: 200;
+
+                background-color: #fff;
+                border-right: 1px solid rgb(228, 228, 228);
+                width: 110px;
+            }
+            .sidebar-menu-link {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                height: 74px;
+
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                font-size: 11px;
+                text-decoration: none;
+                color: #000;
+            }
+            .sidebar-menu-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+            .sidebar-menu-link img {
+                margin: 0 0 4px 0;
+                height: 24px;
+            }
+            .sidebar-menu-bottom-link {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 110px;
+            }
+            .toggle-hide {
+                visibility: visible;
+            }
+
+            .footer {
+                margin-left: 100px;
+
+                background-color: #fff;
+                border-top: 1px solid rgb(228, 228, 228);
+            }
+
+            .footer-top {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px 40px;
+            }
+            .footer-top-inner {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-top-inner a {
+                background-color: #000;
+                color: #ffd500;
+                font-weight: 700;
+                line-height: 30px;
+                padding: 20px;
+                max-width: 203px;
+            }
+            .footer-top-inner a:hover {
+                color: #fff;
+            }
+
+            .footer-bottom {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px 50px 150px 40px;
+            }
+            .footer-bottom-inner {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-bottom-inner-sections {
+                margin-bottom: 50px;
+            }
+            .footer-info {
+                margin-top: 10px;
+            }
+            .footer-info p {
+                margin: 5px 0;
+                font-weight: 700;
+            }
+
+            .footer-links-container p {
+                margin: 0 0 10px 0;
+            }
+            .footer-links {
+                padding: 5px;
+                border-radius: 2px;
+                transition: background-color 0.15s, color 0.15s;
+            }
+            .footer-links:hover {
+                background-color: #000;
+                color: #ffd500;
+            }
+
+            .social-media-links {
+                margin-bottom: 20px; 
+                display: flex; 
+                flex-direction: row; 
+                align-items: center;
+                width: 120px;
+            }
+            .social-media-links img {
+                margin-right: 10px;
+            }
+            .social-media-links:hover div {
+                text-decoration: underline;
+            }
+
+            .sidebar-menu {
+                position: fixed; 
+                top: 55px;
+                bottom: 0;
+                left: 0;
+
+                z-index: 200;
+
+                background-color: #fff;
+                border-right: 1px solid rgb(228, 228, 228);
+                width: 110px;
+            }
+            .sidebar-menu-link {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                height: 74px;
+
+                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
+                font-size: 11px;
+                text-decoration: none;
+                color: #000;
+            }
+            .sidebar-menu-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+            .sidebar-menu-link img {
+                margin: 0 0 4px 0;
+                height: 24px;
+            }
+            .sidebar-menu-bottom-link {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 110px;
+            }
+            .toggle-hide {
+                visibility: visible;
+            }
+           
+            .text {
+                margin: 80px 30px 0 140px;
+            }
+    </style>
+
 </head>
 
 <body>
-    <header> <h1>Intro to Git and Github</h1> </header>
+    <header class="header"> <!--HTML fra html.index for å reprodusere headeren-->
+        <div class="header-left-section">
+            <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png" alt="Oslo Metropolitan University logo"></a>
+        </div>
+        <div class="header-center-section">
+            <input class="search-bar" type="text" placeholder="Søk">
+            <button class="search-button">
+                <img class="search-icon" src="icons/search-icon.svg" alt="Søk">
+                <div class="tooltip tooltip-top">Søk</div>
+            </button>
+        </div>
+        <div class="header-right-section">
+            <a class="student-overview-button" href="https://www.oslomet.no/studier/studieoversikt" target="_blank">
+                <img src="icons/arrow-left.svg" alt="Studieoversikt">
+                <span>Studieoversikt</span>
+                <div class="tooltip tooltip-top">Finn studier</div>
+            </a>
+        </div>
+    </header>
+
+    <section> <!--HTML fra html.index for å reprodusere naviasjonsmenyen-->
+        <nav class="sidebar-menu">
+            <a class="sidebar-menu-link" href="index.html">
+                <img class="toggle-hide" src="icons/home-icon.png" alt="Home">
+                <div>Home</div>
+            </a>
+            <a class="sidebar-menu-link" href="accessibility.html">
+                <img class="toggle-hide" src="icons/accessibility-icon.png" alt="Accessibility">
+                <div>Accessibility</div>
+            </a>
+            <a class="sidebar-menu-link" href="git.html">
+                <img class="toggle-hide" src="icons/github-icon.png" alt="GitHub">
+                <div>GitHub</div>
+            </a>
+            <a class="sidebar-menu-link" href="activity.html">
+                <img class="toggle-hide" src="icons/activity-icon.png" alt="Activit">
+                <div>Activity</div>
+            </a>
+
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/studier">
+                <img class="toggle-hide" src="icons/study-icon.png" alt="Studier">
+                <div>Studier</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/forskning">
+                <img class="toggle-hide" src="icons/research-icon.png" alt="Forskningen vår">
+                <div>Forskningen vår</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/samarbeid">
+                <img class="toggle-hide" src="icons/teamwork-icon.png" alt="Samarbeid">
+                <div>Samarbeid</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/ub">
+                <img class="toggle-hide" src="icons/library-icon.png" alt="Universitetsbiblioteket">
+                <div>Universitetsbiblioteket</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/kontakt">
+                <img class="toggle-hide" src="icons/contact.png" alt="Kontakt oss">
+                <div>Kontakt</div>
+            </a>
+            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/for-studenter">
+                <img class="toggle-hide" src="icons/students-icon.png" alt="For studenter">
+                <div>For studenter</div>
+            </a>
+
+            <a class="sidebar-menu-link sidebar-menu-bottom-link" href="https://www.oslomet.no/om">
+                <img class="toggle-hide" src="icons/about-icon.png" alt="Om OsloMet">
+                <div>Om OsloMet</div>
+            </a>
+        </nav>
+    </section>
+
+    <h1>Intro to Git and Github</h1>
     
     <article class="text">
 
         <section class="git">
 
-            <h2>What is Git</h2> <!--Information in this paragraph is mainly from the Git website(https://git-scm.com/about/branching-and-merging) and the Git Wikipedia site https://en.wikipedia.org/wiki/Git-->
+            <h2>What is Git</h2>    <!--Information in this paragraph is mainly from the Git website(https://git-scm.com/about/branching-and-merging) and the Git Wikipedia site https://en.wikipedia.org/wiki/Git-->
                 <p>Git i a distributed version control system(VCS). It was developed in 2005 by Linus Torvalds and was originally created to assist in the development 
                 of the Linux kernel. Just like Linux it's an open source project which is actively maintained. It's organized by the Git Project and can be downloaded from 
-                their <a href="https://git-scm.com/">website</a>. Its main use is controlling the source code of a program while developing software in collaboration with others. Git pioneered the branching model for source control systems. Practicing development with this model means you 
+                their <a href="https://git-scm.com/" target="_blank">website</a>. Its main use is controlling the source code of a program while developing software in collaboration with others. Git pioneered the branching model for source control systems. Practicing development with this model means you 
                 have a main branch of code, sometimes refered to as the "trunk" or master branch
                 </p>
 
@@ -50,8 +443,8 @@
             <h2>What is Github</h2>
 
                 <p>Github is a cloud-based platform designed for developers to collaborate on code and manage projects. It uses the Git version control system. Github was started in San Fransisco
-                in october 2007 by four developers. They site was launched in april 2008. The site grew fast and within a few years became tha largest code repository host in the world.
-                In 2018 Github was aquired by Microsoft, but it remains an independent buiness with Microsoft as it's parent company.</p>
+                in october 2007 by four developers. The site was launched in april 2008 and gained popularity quite quickly. Within a few years it became tha largest code repository host in the world.
+                In 2018 Github was aquired by Microsoft, but it remains an independent business with Microsoft as it's parent company.</p>
 
             <h3>Why use Github</h3>
 
@@ -60,7 +453,7 @@
                 Extra backup is great, but the real advantage of Github is the community and collaboration. Github enables several developers to collaborate on the same project. They can even 
                 work on it at the same time. You can also create your own forks of other public projects and make your own versions, or even propose those versions to the original project.
                 These features makes Github a fantastic resource for learning and collaboration. It provides a platform for discussion and code reviews so developers and other stakeholders can
-                work together and share knowledge.</p>
+                work together and share knowledge. Go to their <a href="https://github.com/" target="_blank">website</a> to set up an account and join the community!</p>
         </section>
     
     <div class="list">   
@@ -110,5 +503,69 @@
             <td>It's open-source</td>
             <td>Has free-tier and pay-tier options</td>
         </tr>-->
+    
+        <footer class="footer">
+            <section class="footer-top">
+                <div class="footer-top-inner">
+                    <h2>Hold deg oppdatert på hva som skjer på OsloMet.</h2>
+                    <a href="https://www.oslomet.no/nyhetsbrev"><div>Abonner på vårt nyhetsbrev!</div></a>
+                </div>
+            </section>
+
+            <section class="footer-bottom">
+                <div class="footer-bottom-inner">
+                    <section class="footer-bottom-inner-sections">
+                        <img src="icons/logo-footer.svg" alt="Oslo Metropolitan University banner">
+                        <div class="footer-info">
+                            <p>Postboks 4, St. Olavs plass</p>
+                            <p>0130 Oslo</p>
+                            <p>Tlf.: 67 23 50 00</p>
+                            <p><a href="https://www.oslomet.no/om/kontakt">Kontakt oss</a></p>
+                        </div>
+                    </section>
+                    <section class="footer-bottom-inner-sections">
+                        <div class="footer-links-container">
+                            <p><a class="footer-links" href="https://www.oslomet.no/en">English</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/alumni">Alumni</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/ansatteoversikt">Ansatteoversikt</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/arrangement/arrangementsoversikt">Arrangementsoversikt</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/for-ansatte">For ansatte</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/for-studenter">For studenter</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/ledige-stillinger">Ledige stillinger</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/personvernerklering-informasjonskapslar">Personvernerklæring og informasjonskapslar</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/pressekontakt">Pressekontakt</a></p>
+                            <p><a class="footer-links" href="https://www.oslomet.no/om/tilgjengelegheitserklering">Tilgjengelegheitserklæring</a></p>
+                            <p><a class="footer-links" href="https://www-admin.oslomet.no/admin/view/content/58148">Admin</a></p>
+                        </div>
+                    </section>
+                    <section class="footer-bottom-inner-sections">
+                        <a href="https://www.facebook.com/oslomet/">
+                            <div class="social-media-links">
+                                <img src="icons/icon-facebook.svg" alt="OsloMet på Facebook">
+                                <div>Facebook</div>
+                            </div>
+                        </a>
+                        <a href="https://twitter.com/oslomet">
+                            <div class="social-media-links">
+                                <img src="icons/icon-twitter.png" alt="OsloMet på X (Twitter)">
+                                <div>X (Twitter)</div>
+                            </div>
+                        </a>
+                        <a href="https://no.linkedin.com/school/oslomet/">
+                            <div class="social-media-links">
+                                <img src="icons/icon-linkedin.svg" alt="OsloMet på LinkedIn">
+                                <div>LinkedIn</div>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/oslomet/?hl=nb">
+                            <div class="social-media-links">
+                                <img src="icons/icon-instagram.svg" alt="OsloMet på Instagram">
+                                <div>Instagram</div>
+                            </div>
+                        </a>
+                    </section>
+                </div>
+            </section>
+        </footer>    
 </body>
 </html>
