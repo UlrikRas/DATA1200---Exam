@@ -1,4 +1,4 @@
-::Project teammates::
+#---Project teammates---
 
 
 Name: Jacob Dyberg-Gulbrandsen -> 
@@ -27,7 +27,7 @@ OsloMet ID: s341921
 
 
 
-::Icon sources::
+#---Icon sources---
 
 https://www.vecteezy.com/vector-art/16184515-set-of-contact-icons-website-set-icon-vector-contact-information-icons-vector-illustration
 

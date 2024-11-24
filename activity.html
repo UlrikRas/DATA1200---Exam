@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Math Competitions</title>
+    <link rel="icon" type="image/png" href="icons/favicon-32x32.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
     <style>
         /* OsloMet-inspired styles */
         body {
@@ -12,10 +19,20 @@
                 background-color: rgb(248, 248, 248);
                 color: #000;
             }
-            h1, h2, h3 {
+            main {
+                min-height: 1000px;
+            }
+            h1, h2 {
                 font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-            } 
-        
+            }
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+            li {
+                list-style-position: inside;
+            }
+
             .search-button,
             .student-overview-button,
             .arrow-link {
@@ -156,48 +173,6 @@
                 font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
             }
 
-            .sidebar-menu {
-                position: fixed; 
-                top: 55px;
-                bottom: 0;
-                left: 0;
-
-                z-index: 200;
-
-                background-color: #fff;
-                border-right: 1px solid rgb(228, 228, 228);
-                width: 110px;
-            }
-            .sidebar-menu-link {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                height: 74px;
-
-                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-                font-size: 11px;
-                text-decoration: none;
-                color: #000;
-            }
-            .sidebar-menu-link:hover {
-                background-color: rgb(235, 235, 235);
-            }
-            .sidebar-menu-link img {
-                margin: 0 0 4px 0;
-                height: 24px;
-            }
-            .sidebar-menu-bottom-link {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 110px;
-            }
-            .toggle-hide {
-                visibility: visible;
-            }
-
             .footer {
                 margin-left: 100px;
 
@@ -316,22 +291,224 @@
             .toggle-hide {
                 visibility: visible;
             }
-           
-            .section {
+
+            .main-section {
+                margin: 80px 30px 0 140px;
+            }
+
+            .main-section-header {
+                margin-bottom: 50px;
+            }
+            .main-section-header h1 {
+                margin-bottom: 0;
+                font-size: 35px;
+            }
+            .main-section-header p {
+                margin: 5px 0 20px 0;
+                font-size: 18px;
+            }
+            .main-section-header-sub {
+                font-weight: 700;
+            }
+
+            .section-header {
+                background-color: #000;
+                color: #ffd500;
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+
+            .info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                column-gap: 20px;
+                row-gap: 20px;
+
+                background-color: #fff;
+                padding: 5px 15px;
+                border: 1px solid rgb(228, 228, 228);
+                border-radius: 5px;
+            }
+            .info-grid p:first-child {
+                padding-top: 10px;
+                border-top: 1px solid #000;
+                font-weight: 700;
+            }
+            .info-grid-paragraph {
+                font-size: 14px;
+            }
+            .study-structure-info-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .academic-year-header {
+                margin-top: 50px;
+                font-size: 23px;
+                background-color: rgb(237 237 237);
+                border: 1px solid rgb(229 226 226);
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+
+            .centering {
                 margin: 70px auto;
                 min-width: 700px;
                 max-width: 1000px;
             }
-            .section h1 {
-                margin-bottom: 0;
-                font-size: 35px;
+
+            .requirements-section-link {
+                font-weight: 700;
+                text-decoration: underline;
             }
-            h3 {
+
+            .paragraph-content {
+                background-color: #fff;
+                padding: 10px 20px;
+                border: 1px solid rgb(228, 228, 228);
+                border-radius: 5px;
+            }
+            .paragraph-content-link {
+                transition: background-color 0.15s;
+            }
+            .paragraph-content-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+
+            .manager-container {
+                display: grid;
+                grid-template-columns: 110px 1fr;
+            }
+            .manager-picture {
+                width: 100px;
+            }
+            .manager-info p {
+                margin: 0 0 20px 0;
+            }
+            .manager-info p:first-child {
+                font-weight: 700;
+            }
+
+            .suggested-programs-container {
+                padding: 0 20px 10px 20px;
+                border-top: 1px solid rgb(228, 228, 228);
+                transition: background-color 0.15s;
+            }
+            .suggested-programs-container:hover {
+                background-color: #fff;
+            }
+            .suggested-programs-last {
+                border-bottom: 1px solid rgb(228, 228, 228);
+            }
+            .suggested-programs-info-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: left;
+                font-size: 15px;
+                margin-top: -10px;
+            }
+            .suggested-programs-info-container div {
+                padding: 2px 10px;
+            }
+            .suggested-programs-info-container div:first-child {
+                padding: 2px 10px 2px 0;
+            }
+
+            .student-history-button-container {
+                margin-top: 50px;
+            }
+            .student-history-button {
                 background-color: #000;
                 color: #ffd500;
-                padding: 5px 10px;
-                padding-left: 20px;
-                border-radius: 3px;
+                font-weight: 700;
+                padding: 20px;
+            }
+            .student-history-button:hover {
+                color: #fff;
+            }
+
+            @media (min-width: 886px) {
+                .info-grid {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 700px;
+                    max-width: 1000px;
+                }
+            }
+            @media (min-width: 790px) and (max-width: 885px) {
+                .info-grid {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 500px;
+                    max-width: 800px;
+                }
+            }
+            @media (min-width: 660px) and (max-width: 789px) {
+                .info-grid,
+                .study-structure-info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .centering {
+                    min-width: 400px;
+                    max-width: 700px;
+                }
+            }
+            @media (max-width: 659px) {
+                .info-grid,
+                .study-structure-info-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .centering {
+                    min-width: 400px;
+                    max-width: 600px;
+                }
+
+                .suggested-programs-info-container {
+                    font-size: 13px;
+                }
+
+                .main-section-header h1 {
+                    font-size: 27px;
+                }
+                .main-section-header p {
+                    font-size: 16px;
+                }
+                h2 {
+                    font-size: 22px;
+                }
+                p {
+                    font-size: 15px;
+                }
+                ul {
+                    font-size: 15px;
+                }
+
+                .academic-year-header {
+                    font-size: 20px;
+                }
+            }
+            @media (max-width: 750px) {
+                .footer-top-inner,
+                .footer-bottom-inner {
+                    flex-direction: column;
+                }
+            }
+
+            @media (max-height: 850px) {
+                .toggle-hide {
+                    visibility: hidden;
+                }
+
+                .sidebar-menu-link {
+                    height: 40px;
+                }
+                .sidebar-menu-link img {
+                    height: 0;
+                }
             }
     </style>
 </head>
@@ -368,101 +545,81 @@
             </a>
             <a class="sidebar-menu-link" href="git.html">
                 <img class="toggle-hide" src="icons/github-icon.png" alt="GitHub">
-                <div>GitHub</div>
+                <div>Git & GitHub</div>
             </a>
             <a class="sidebar-menu-link" href="activity.html">
                 <img class="toggle-hide" src="icons/activity-icon.png" alt="Activit">
                 <div>Activity</div>
             </a>
-
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/studier">
-                <img class="toggle-hide" src="icons/study-icon.png" alt="Studier">
-                <div>Studier</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/forskning">
-                <img class="toggle-hide" src="icons/research-icon.png" alt="Forskningen vår">
-                <div>Forskningen vår</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/samarbeid">
-                <img class="toggle-hide" src="icons/teamwork-icon.png" alt="Samarbeid">
-                <div>Samarbeid</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/ub">
-                <img class="toggle-hide" src="icons/library-icon.png" alt="Universitetsbiblioteket">
-                <div>Universitetsbiblioteket</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/kontakt">
-                <img class="toggle-hide" src="icons/contact.png" alt="Kontakt oss">
-                <div>Kontakt</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/for-studenter">
-                <img class="toggle-hide" src="icons/students-icon.png" alt="For studenter">
-                <div>For studenter</div>
-            </a>
-
-            <a class="sidebar-menu-link sidebar-menu-bottom-link" href="https://www.oslomet.no/om">
-                <img class="toggle-hide" src="icons/about-icon.png" alt="Om OsloMet">
-                <div>Om OsloMet</div>
-            </a>
         </nav>
     </section>
 
-    <section>
-        <h1>Excel in Math Competitions</h1>
-        <p>Challenge yourself and sharpen your problem-solving skills!</p>
-    </section>
+    <style>
+        .activity-image {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
 
+    <main class="main-section">
+        <section class="centering main-section-header">
+            <h1>Excel in Math Competitions</h1>
+            <p>Challenge yourself and sharpen your problem-solving skills!</p>
+        </section>
 
-    <section>
-        <h1>What Are Math Competitions?</h2>
-        <p>
-            Math competitions are opportunities for students to apply mathematical thinking and problem-solving in a competitive environment. They range from school-level contests to international championships. 
-            Learn more about their significance at <a href="https://www.maa.org/math-competitions" target="_blank">MAA Math Competitions</a>.
-        </p>
-        <img src="https://www.thekidstory.com/wp-content/uploads/2015/11/lovemath1-1.jpg" alt="Students solving math problems">
-    </section>
+        <section class="centering">
+            <h2>What Are Math Competitions?</h2>
+            <p>
+                Math competitions are opportunities for students to apply mathematical thinking and problem-solving in a competitive environment. They range from school-level contests to international championships. 
+                Learn more about their significance at <a href="https://www.maa.org/math-competitions" target="_blank">MAA Math Competitions</a>.
+            </p>
+            <img class="activity-image" src="https://www.thekidstory.com/wp-content/uploads/2015/11/lovemath1-1.jpg" alt="Students solving math problems">
+        </section>
 
+        <section class="centering">
+            <h2 class="section-header">Popular Math Competitions</h2>
+            <div class="paragraph-content">
+            <p>
+                Some of the most renowned competitions include:
+                <ul>
+                    <li>
+                        The <a href="https://www.imo-official.org/" target="_blank">International Mathematical Olympiad (IMO)</a>, which is the premier global math competition.
+                    </li>
+                    <li>
+                        The <a href="https://www.amc-reg.maa.org/" target="_blank">American Mathematics Competitions (AMC)</a>, a stepping stone to advanced math challenges.
+                    </li>
+                    <li>
+                        The <a href="https://artofproblemsolving.com/" target="_blank">Art of Problem Solving (AoPS)</a>, which offers a wealth of resources and competitions for all levels.
+                    </li>
+                </ul>
+            </p>
+            </div>
+            <img class="activity-image" src="https://www.ndu.edu.lb/ContentFiles/15467Image.jpg?w=870&h=581&scale=both" alt="Math competition trophy">
+        </section>
 
-    <section>
-        <h3>Popular Math Competitions</h3>
-        <p>
-            Some of the most renowned competitions include:
-            <ul>
-                <li>
-                    The <a href="https://www.imo-official.org/" target="_blank">International Mathematical Olympiad (IMO)</a>, which is the premier global math competition.
-                </li>
-                <li>
-                    The <a href="https://www.amc-reg.maa.org/" target="_blank">American Mathematics Competitions (AMC)</a>, a stepping stone to advanced math challenges.
-                </li>
-                <li>
-                    The <a href="https://artofproblemsolving.com/" target="_blank">Art of Problem Solving (AoPS)</a>, which offers a wealth of resources and competitions for all levels.
-                </li>
-            </ul>
-        </p>
-        <img src="https://www.ndu.edu.lb/ContentFiles/15467Image.jpg?w=870&h=581&scale=both" alt="Math competition trophy">
-    </section>
-    
-    <section>
-        <h3>How to Prepare</h3>
-        <p>
-            Success in math competitions requires preparation and strategy. Consider the following tips:
-            <ul>
-                <li>Practice regularly with past papers from <a href="https://www.pastpapers.net/" target="_blank">Past Papers Net</a>.</li>
-                <li>Join online forums such as the <a href="https://artofproblemsolving.com/community" target="_blank">AoPS Community</a> to discuss challenging problems.</li>
-                <li>Use resources from <a href="https://brilliant.org/" target="_blank">Brilliant.org</a> to build problem-solving skills.</li>
-            </ul>
-        </p>
-        <img src="https://www.nordangliaeducation.com/bsb-shunyi/-/media/bsb-shunyi/academic-excellence/y9-students.jpg?rev=80604bd54a634ebb94c8e7073f4a2943&hash=48BCD9484F713DF1FBB9DE846D1EE6CD" alt="Student preparing for competition">
-    </section>
+        <section class="centering">
+            <h2>How to Prepare</h2>
+            <p>
+                Success in math competitions requires preparation and strategy. Consider the following tips:
+                <ul>
+                    <li>Practice regularly with past papers from <a href="https://www.pastpapers.net/" target="_blank">Past Papers Net</a>.</li>
+                    <li>Join online forums such as the <a href="https://artofproblemsolving.com/community" target="_blank">AoPS Community</a> to discuss challenging problems.</li>
+                    <li>Use resources from <a href="https://brilliant.org/" target="_blank">Brilliant.org</a> to build problem-solving skills.</li>
+                </ul>
+            </p>
+            <img class="activity-image" src="https://www.nordangliaeducation.com/bsb-shunyi/-/media/bsb-shunyi/academic-excellence/y9-students.jpg?rev=80604bd54a634ebb94c8e7073f4a2943&hash=48BCD9484F713DF1FBB9DE846D1EE6CD" alt="Student preparing for competition">
+        </section>
 
-    <section>
-        <h3>Join a Math Club</h3>
-        <p>
-            Joining a math club or group can help you stay motivated and connect with like-minded individuals. Many schools and universities have active clubs, or you can find online communities such as 
-            <a href="https://www.mathcounts.org/" target="_blank">MathCounts</a>.
-        </p>
-        <img src="https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_3/v1724081408/ahschool/rfdxiz5srxlg1d2q2hdx/2024PBMathNationalCompetition1080x566.png" alt="Math club members working together">
-    </section>
+        <section class="centering">
+            <h2 class="section-header">Join a Math Club</h2>
+            <p class="paragraph-content">
+                Joining a math club or group can help you stay motivated and connect with like-minded individuals. Many schools and universities have active clubs, or you can find online communities such as 
+                <a href="https://www.mathcounts.org/" target="_blank">MathCounts</a>.
+            </p>
+            <img class="activity-image" src="https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_3/v1724081408/ahschool/rfdxiz5srxlg1d2q2hdx/2024PBMathNationalCompetition1080x566.png" alt="Math club members working together">
+        </section>
+
+    </main>
 
     <footer class="footer">
         <section class="footer-top">
@@ -474,8 +631,8 @@
 
         <section class="footer-bottom">
             <div class="footer-bottom-inner">
-                <section class="footer-bottom-inner-left">
-                    <img src="icons/logo-footer.svg">
+                <section class="footer-bottom-inner-sections">
+                    <img src="icons/logo-footer.svg" alt="Oslo Metropolitan University banner">
                     <div class="footer-info">
                         <p>Postboks 4, St. Olavs plass</p>
                         <p>0130 Oslo</p>
@@ -483,7 +640,7 @@
                         <p><a href="https://www.oslomet.no/om/kontakt">Kontakt oss</a></p>
                     </div>
                 </section>
-                <section class="footer-bottom-inner-center">
+                <section class="footer-bottom-inner-sections">
                     <div class="footer-links-container">
                         <p><a class="footer-links" href="https://www.oslomet.no/en">English</a></p>
                         <p><a class="footer-links" href="https://www.oslomet.no/alumni">Alumni</a></p>
@@ -498,28 +655,28 @@
                         <p><a class="footer-links" href="https://www-admin.oslomet.no/admin/view/content/58148">Admin</a></p>
                     </div>
                 </section>
-                <section class="footer-bottom-inner-right">
+                <section class="footer-bottom-inner-sections">
                     <a href="https://www.facebook.com/oslomet/">
                         <div class="social-media-links">
-                            <img src="icons/icon-facebook.svg">
+                            <img src="icons/icon-facebook.svg" alt="OsloMet på Facebook">
                             <div>Facebook</div>
                         </div>
                     </a>
                     <a href="https://twitter.com/oslomet">
                         <div class="social-media-links">
-                            <img src="icons/icon-twitter.png">
+                            <img src="icons/icon-twitter.png" alt="OsloMet på X (Twitter)">
                             <div>X (Twitter)</div>
                         </div>
                     </a>
                     <a href="https://no.linkedin.com/school/oslomet/">
                         <div class="social-media-links">
-                            <img src="icons/icon-linkedin.svg">
+                            <img src="icons/icon-linkedin.svg" alt="OsloMet på LinkedIn">
                             <div>LinkedIn</div>
                         </div>
                     </a>
                     <a href="https://www.instagram.com/oslomet/?hl=nb">
                         <div class="social-media-links">
-                            <img src="icons/icon-instagram.svg">
+                            <img src="icons/icon-instagram.svg" alt="OsloMet på Instagram">
                             <div>Instagram</div>
                         </div>
                     </a>
