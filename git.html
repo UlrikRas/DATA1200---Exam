@@ -323,8 +323,46 @@
             }
            
             .text {
-                margin: 80px 30px 0 140px;
+                margin: 70px auto;
+                min-width: 700px;
+                max-width: 1000px;
             }
+            .text h1 {
+                margin-bottom: 0;
+                font-size: 35px;
+            }
+
+            .images {
+            margin: 70px auto; 
+            min-width: 700px;
+            max-width: 1500px;
+            }
+
+            .images {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .images img {
+                width: 100%;
+                max-width: 750px;
+                height: auto;
+            }
+
+            .list {
+                background-color: #fff;
+                padding: 10px 20px;
+                border: 1px solid rgb(228, 228, 228);
+                border-radius: 5px;
+            }
+            h3 {
+                background-color: #000;
+                color: #ffd500;
+                padding: 5px 10px;
+                border-radius: 3px;
+            }
+                    
     </style>
 
 </head>
@@ -401,13 +439,14 @@
         </nav>
     </section>
 
-    <h1>Intro to Git and Github</h1>
+    
     
     <article class="text">
+        <h1>Intro to Git and Github</h1>
 
         <section class="git">
 
-            <h2>What is Git</h2>    <!--Information in this paragraph is mainly from the Git website(https://git-scm.com/about/branching-and-merging) and the Git Wikipedia site https://en.wikipedia.org/wiki/Git-->
+            <h3>What is Git</h3>    <!--Information in this paragraph is mainly from the Git website(https://git-scm.com/about/branching-and-merging) and the Git Wikipedia site https://en.wikipedia.org/wiki/Git-->
                 <p>Git i a distributed version control system(VCS). It was developed in 2005 by Linus Torvalds and was originally created to assist in the development 
                 of the Linux kernel. Just like Linux it's an open source project which is actively maintained. It's organized by the Git Project and can be downloaded from 
                 their <a href="https://git-scm.com/" target="_blank">website</a>. Its main use is controlling the source code of a program while developing software in collaboration with others. Git pioneered the branching model for source control systems. Practicing development with this model means you 
@@ -422,9 +461,11 @@
                 your project and managing changes effectivly.</p>
         </section>
 
+        <h3>Advantages of using Git</h3>
+
         <div class="list">
-            <h3>Advantages of using Git</h3>
-                <ul class="bullet">
+            
+                <ul>
                     <li>Tracks changes to the project
                     <li>Provides historical back-up of project-files
                     <li>Create branches to try out ideas</li>
@@ -433,14 +474,26 @@
         </div>
     </article>
 
-        <img src="pictures/commits_1.jpg" alt="Screenshoot of Github commit history" title="Commit history">
-        <img src="pictures/commits_2.jpg" alt="Screenshoot of Github commit history" title="Commit history">
-        
+    <div class="images">
+        <picture>
+            <source media="(min-width: 1253px)" srcset="pictures/commits_1_large.JPG" sizes="(min-width: 1253px) 1253px, 100vw">
+            <source media="(min-width: 940px)" srcset="pictures/commits_1_medium.JPG" sizes="(min-width: 940px) 768px, 100vw">
+            <img src="pictures/commits_1_small.JPG" alt="Screenshoot of Github commit history" title="Commit history">
+        </picture>
+
+        <picture>
+            <source media="(min-width: 1252px)" srcset="pictures/commits_2_large.JPG" sizes="(min-width: 1252px) 1252px, 100vw">
+            <source media="(min-width: 939px)" srcset="pictures/commits_2_medium.JPG" sizes="(min-width: 939px) 939px, 100vw">
+            <img src="pictures/commits_2_small.JPG" alt="Screenshoot of Github commit history" title="Commit history">
+        </picture>
+    </div>    
+
+
     <article class="text">
 
         <section class="github">  <!--Information gathered from Github wikipedia page - https://en.wikipedia.org/wiki/GitHub -->
 
-            <h2>What is Github</h2>
+            <h3>What is Github</h3>
 
                 <p>Github is a cloud-based platform designed for developers to collaborate on code and manage projects. It uses the Git version control system. Github was started in San Fransisco
                 in october 2007 by four developers. The site was launched in april 2008 and gained popularity quite quickly. Within a few years it became tha largest code repository host in the world.
@@ -456,9 +509,11 @@
                 work together and share knowledge. Go to their <a href="https://github.com/" target="_blank">website</a> to set up an account and join the community!</p>
         </section>
     
-    <div class="list">   
-            <h3>Advantages of using Gitub</h3>
-        <ul class="bullet">
+        <h3>Advantages of using Gitub</h3>
+    
+        <div class="list">   
+            
+        <ul>
             <li>Enables teambased development
             <li>Allows multiple developers to work simultaneously on the same project
             <li>Allows you to contribute to open source projects and browse other peoples code
@@ -468,9 +523,20 @@
     </div>
     
     </article>
+
+    <div class="images">
+        <picture>
+            <source media="(min-width: 1569px)" srcset="pictures/changes_1_large.JPG" sizes="(min-width: 1569px) 1569px, 100vw">
+            <source media="(min-width: 1177px)" srcset="pictures/changes_1_medium.JPG" sizes="(min-width: 1177px) 1177px, 100vw">
+            <img src="pictures/changes_1_small.JPG" alt="Screenshoot of changes in a certain Github commit" title="Changes in commit">
+        </picture>
         
-    <img src="pictures/changes_1.jpg" alt="Screenshoot of changes in a certain Github commit" title="Commit changes">
-    <img src="pictures/changes_2.jpg" alt="Screenshoot of changes in a certain Github commit" title="Commit changes">
+        <picture>
+            <source media="(min-width: 1569px)" srcset="pictures/changes_2_large.JPG" sizes="(min-width: 1569px) 1569px, 100vw">
+            <source media="(min-width: 1177px)" srcset="pictures/changes_2_medium.JPG" sizes="(min-width: 1177px) 1177px, 100vw">
+            <img src="pictures/changes_2_small.JPG" alt="Screenshoot of changes in a certain Github commit" title="Changes in commit">
+        </picture>
+    </div>
 
   <!--  <h2>Git and Github - Key differences</h2> Hentet fra https://www.simplilearn.com/tutorials/git-tutorial/git-vs-github
     
