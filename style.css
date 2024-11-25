@@ -16,6 +16,10 @@ body {
 h1, h2 {
     font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
 }
+h1 {
+    margin-bottom: 0;
+    font-size: 35px;
+}
 a {
     color: #000;
     text-decoration: none;
@@ -305,10 +309,6 @@ li {
 .main-section-header {
     margin-bottom: 50px;
 }
-.main-section-header h1 {
-    margin-bottom: 0;
-    font-size: 35px;
-}
 .main-section-header p {
     margin: 5px 0 20px 0;
     font-size: 18px;
@@ -361,7 +361,7 @@ li {
     max-width: 1000px;
 }
 
-.requirements-section-link {
+.normal-link {
     font-weight: 700;
     text-decoration: underline;
 }
@@ -462,6 +462,7 @@ li {
 
 
 /*----------------Changes to the CSS based on changes in screen/browser window size----------------*/
+/*----------------Changes to WIDTH----------------*/
 @media (min-width: 886px) {
     .info-grid {
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -508,7 +509,7 @@ li {
         font-size: 13px;
     }
 
-    .main-section-header h1 {
+    h1 {
         font-size: 27px;
     }
     .main-section-header p {
@@ -534,7 +535,6 @@ li {
         flex-direction: column;
     }
 }
-
 /*----------------Screen size changes specifically for the git.html page----------------*/
 @media (max-width: 900px) {
     .git-picture-section {
@@ -542,6 +542,7 @@ li {
     }
 }
 
+/*----------------Changes to HEIGHT----------------*/
 @media (max-height: 850px) {
     .toggle-hide {
         visibility: hidden;
