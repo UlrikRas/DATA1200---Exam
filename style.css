@@ -386,11 +386,14 @@ li {
 .manager-picture {
     width: 100px;
 }
-.manager-info p {
-    margin: 0 0 20px 0;
-}
-.manager-info p:first-child {
+.manager-info-h {
+    margin: 0 0 15px 0;
+    font-size: 17px;
     font-weight: 700;
+}
+.manager-info-p {
+    font-size: 14px;
+    margin: 0 0 5px 0;
 }
 
 .suggested-programs-container {
