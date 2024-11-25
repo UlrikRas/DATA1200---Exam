@@ -6,513 +6,16 @@
         <title>Matematisk modellering og datavitenskap – ingeniør - OsloMet</title>
         <link rel="icon" type="image/png" href="icons/favicon-32x32.png">
 
+        <link rel="stylesheet" href="style.css">
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-
-        <style>
-            body {
-                margin: 0;
-                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-                background-color: rgb(248, 248, 248);
-                color: #000;
-            }
-            main {
-                min-height: 1000px;
-            }
-            h1, h2 {
-                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-            }
-            a {
-                color: #000;
-                text-decoration: none;
-            }
-            li {
-                list-style-position: inside;
-            }
-
-            .search-button,
-            .student-overview-button,
-            .arrow-link {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                cursor: pointer;
-            }
-            .arrow-link {
-                justify-content: left;
-            }
-            .search-button .tooltip,
-            .student-overview-button .tooltip {
-                position: absolute;
-                bottom: -30px;
-
-                opacity: 0;
-                transition: opacity 0.15s;
-
-                pointer-events: none;
-                white-space: nowrap;
-
-                background-color: gray;
-                color: #fff;
-                font-size: 12px;
-                font-weight: 400;
-                padding: 4px 8px;
-                border-radius: 2px;
-            }
-            .search-button:hover .tooltip,
-            .student-overview-button:hover .tooltip {
-                opacity: 1;
-            }
-            .tooltip::after {
-                content: " ";
-                position: absolute;
-                left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
-                border-style: solid;
-            }
-            .tooltip-top::after {
-                bottom: 100%;
-                border-color: transparent transparent gray transparent;
-            }
-
-            .header {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-
-                z-index: 100;
-
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-
-                height: 55px;
-                background-color: #fff;
-                border-bottom: 1px solid rgb(228, 228, 228);
-            }
-
-            .header-left-section {
-                margin: 0 25px 0 0;
-            }
-            .oslomet-logo {
-                width: 111px;
-                height: 56px;
-            }
-
-            .header-center-section {
-                margin: 0 35px 0 60px;
-                max-width: 400px;
-
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                flex: 1;
-
-            }
-            .search-bar {
-                flex: 1;
-
-                width: 0;
-                height: 30px;
-
-                padding-left: 10px;
-                border: 1px solid rgb(192, 192, 192);
-                border-radius: 2px;
-                font-size: 16px;
-
-                box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
-            }
-            .search-button {
-                margin: 0 10px 0 -1px;
-
-                width: 55px;
-                height: 34px;
-
-                border: 1px solid rgb(192, 192, 192);
-
-                cursor: pointer;
-            }
-            .search-icon {
-                height: 20px;
-                margin-top: 2px;
-            }
-
-            .header-right-section {
-                margin: 0 15px;
-
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-            }
-            .student-overview-button,
-            .arrow-link {
-                color: #000;
-                text-decoration: underline;
-                font-size: 16px;
-                font-weight: 700;
-            }
-            .student-overview-button {
-                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-                text-decoration: none;
-            }
-            .student-overview-button img,
-            .arrow-link img {
-                margin-right: 10px;
-                transition: margin 0.15s;
-            }
-            .arrow-link:hover img {
-                margin-right: 20px;
-            }
-            .student-overview-button .tooltip {
-                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-            }
-
-            .footer {
-                margin-left: 100px;
-
-                background-color: #fff;
-                border-top: 1px solid rgb(228, 228, 228);
-            }
-
-            .footer-top {
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 20px 40px;
-            }
-            .footer-top-inner {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .footer-top-inner a {
-                background-color: #000;
-                color: #ffd500;
-                font-weight: 700;
-                line-height: 30px;
-                padding: 20px;
-                max-width: 203px;
-            }
-            .footer-top-inner a:hover {
-                color: #fff;
-            }
-
-            .footer-bottom {
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 20px 50px 150px 40px;
-            }
-            .footer-bottom-inner {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .footer-bottom-inner-sections {
-                margin-bottom: 50px;
-            }
-            .footer-info {
-                margin-top: 10px;
-            }
-            .footer-info p {
-                margin: 5px 0;
-                font-weight: 700;
-            }
-
-            .footer-links-container p {
-                margin: 0 0 10px 0;
-            }
-            .footer-links {
-                padding: 5px;
-                border-radius: 2px;
-                transition: background-color 0.15s, color 0.15s;
-            }
-            .footer-links:hover {
-                background-color: #000;
-                color: #ffd500;
-            }
-
-            .social-media-links {
-                margin-bottom: 20px; 
-                display: flex; 
-                flex-direction: row; 
-                align-items: center;
-                width: 120px;
-            }
-            .social-media-links img {
-                margin-right: 10px;
-            }
-            .social-media-links:hover div {
-                text-decoration: underline;
-            }
-
-            .sidebar-menu {
-                position: fixed; 
-                top: 55px;
-                bottom: 0;
-                left: 0;
-
-                z-index: 200;
-
-                background-color: #fff;
-                border-right: 1px solid rgb(228, 228, 228);
-                width: 110px;
-            }
-            .sidebar-menu-link {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                height: 74px;
-
-                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-                font-size: 11px;
-                text-decoration: none;
-                color: #000;
-            }
-            .sidebar-menu-link:hover {
-                background-color: rgb(235, 235, 235);
-            }
-            .sidebar-menu-link img {
-                margin: 0 0 4px 0;
-                height: 24px;
-            }
-            .sidebar-menu-bottom-link {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 110px;
-            }
-            .toggle-hide {
-                visibility: visible;
-            }
-
-            .main-section {
-                margin: 80px 30px 0 140px;
-            }
-
-            .main-section-header {
-                margin-bottom: 50px;
-            }
-            .main-section-header h1 {
-                margin-bottom: 0;
-                font-size: 35px;
-            }
-            .main-section-header p {
-                margin: 5px 0 20px 0;
-                font-size: 18px;
-            }
-            .main-section-header-sub {
-                font-weight: 700;
-            }
-
-            .section-header {
-                background-color: #000;
-                color: #ffd500;
-                padding: 5px 10px;
-                border-radius: 3px;
-            }
-
-            .info-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-                column-gap: 20px;
-                row-gap: 20px;
-
-                background-color: #fff;
-                padding: 5px 15px;
-                border: 1px solid rgb(228, 228, 228);
-                border-radius: 5px;
-            }
-            .info-grid p:first-child {
-                padding-top: 10px;
-                border-top: 1px solid #000;
-                font-weight: 700;
-            }
-            .info-grid-paragraph {
-                font-size: 14px;
-            }
-            .study-structure-info-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-            .academic-year-header {
-                margin-top: 50px;
-                font-size: 23px;
-                background-color: rgb(237 237 237);
-                border: 1px solid rgb(229 226 226);
-                padding: 5px 10px;
-                border-radius: 3px;
-            }
-
-            .centering {
-                margin: 70px auto;
-                min-width: 700px;
-                max-width: 1000px;
-            }
-
-            .requirements-section-link {
-                font-weight: 700;
-                text-decoration: underline;
-            }
-
-            .paragraph-content {
-                background-color: #fff;
-                padding: 10px 20px;
-                border: 1px solid rgb(228, 228, 228);
-                border-radius: 5px;
-            }
-            .paragraph-content-link {
-                transition: background-color 0.15s;
-            }
-            .paragraph-content-link:hover {
-                background-color: rgb(235, 235, 235);
-            }
-
-            .manager-container {
-                display: grid;
-                grid-template-columns: 110px 1fr;
-            }
-            .manager-picture {
-                width: 100px;
-            }
-            .manager-info p {
-                margin: 0 0 20px 0;
-            }
-            .manager-info p:first-child {
-                font-weight: 700;
-            }
-
-            .suggested-programs-container {
-                padding: 0 20px 10px 20px;
-                border-top: 1px solid rgb(228, 228, 228);
-                transition: background-color 0.15s;
-            }
-            .suggested-programs-container:hover {
-                background-color: #fff;
-            }
-            .suggested-programs-last {
-                border-bottom: 1px solid rgb(228, 228, 228);
-            }
-            .suggested-programs-info-container {
-                display: flex;
-                flex-direction: row;
-                justify-content: left;
-                font-size: 15px;
-                margin-top: -10px;
-            }
-            .suggested-programs-info-container div {
-                padding: 2px 10px;
-            }
-            .suggested-programs-info-container div:first-child {
-                padding: 2px 10px 2px 0;
-            }
-
-            .student-history-button-container {
-                margin-top: 50px;
-            }
-            .student-history-button {
-                background-color: #000;
-                color: #ffd500;
-                font-weight: 700;
-                padding: 20px;
-            }
-            .student-history-button:hover {
-                color: #fff;
-            }
-
-            @media (min-width: 886px) {
-                .info-grid {
-                    grid-template-columns: 1fr 1fr 1fr 1fr;
-                }
-
-                .centering {
-                    min-width: 700px;
-                    max-width: 1000px;
-                }
-            }
-            @media (min-width: 790px) and (max-width: 885px) {
-                .info-grid {
-                    grid-template-columns: 1fr 1fr 1fr;
-                }
-
-                .centering {
-                    min-width: 500px;
-                    max-width: 800px;
-                }
-            }
-            @media (min-width: 660px) and (max-width: 789px) {
-                .info-grid,
-                .study-structure-info-grid {
-                    grid-template-columns: 1fr 1fr;
-                }
-
-                .centering {
-                    min-width: 400px;
-                    max-width: 700px;
-                }
-            }
-            @media (max-width: 659px) {
-                .info-grid,
-                .study-structure-info-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .centering {
-                    min-width: 400px;
-                    max-width: 600px;
-                }
-
-                .suggested-programs-info-container {
-                    font-size: 13px;
-                }
-
-                .main-section-header h1 {
-                    font-size: 27px;
-                }
-                .main-section-header p {
-                    font-size: 16px;
-                }
-                h2 {
-                    font-size: 22px;
-                }
-                p {
-                    font-size: 15px;
-                }
-                ul {
-                    font-size: 15px;
-                }
-
-                .academic-year-header {
-                    font-size: 20px;
-                }
-            }
-            @media (max-width: 750px) {
-                .footer-top-inner,
-                .footer-bottom-inner {
-                    flex-direction: column;
-                }
-            }
-
-            @media (max-height: 850px) {
-                .toggle-hide {
-                    visibility: hidden;
-                }
-
-                .sidebar-menu-link {
-                    height: 40px;
-                }
-                .sidebar-menu-link img {
-                    height: 0;
-                }
-            }
-        </style>
     </head>
 
     <body>
+        <!--Header bar at the top-->
         <header class="header">
             <div class="header-left-section">
                 <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png" alt="Oslo Metropolitan University logo"></a>
@@ -533,6 +36,7 @@
             </div>
         </header>
 
+        <!--Main navigation menu on the left side-->
         <section>
             <nav class="sidebar-menu">
                 <a class="sidebar-menu-link" href="index.html">
@@ -591,6 +95,7 @@
                 <p>Få innsikt i matematiske modeller og datadrevne metoder som kan løse mange praktiske og samfunnsnyttige oppgaver.</p>
             </section>
 
+            <!--General information about the course-->
             <section class="centering">
                 <section class="info-grid">
                     <div>
@@ -625,6 +130,7 @@
                 </section>
             </section>
 
+            <!--About requirements for the course-->
             <section class="centering requirements-section">
                 <h2>Opptakskrav og poeng</h2>
                 <p>For å søke på dette programmet må du ha</p>
@@ -637,6 +143,7 @@
                 <p>Hvis du mangler generell studiekompetanse eller enkelte fag fra videregående skole, kan du søke på dette studiet om du har <a href="https://www.oslomet.no/studier/tkd/forkurs-ingenior">bestått ettårig forkurs for ingeniørutdanning.</a></p>
             </section>
 
+            <!--How to apply for the course-->
             <section class="centering how-to-apply-section">
                 <h2 class="section-header">Slik søker du</h2>
                 <div class="paragraph-content">
@@ -652,7 +159,8 @@
                     </a>
                 </p></div>
             </section>
-
+            
+            <!--Information about what a student will learn at the course-->
             <section class="centering what-you-learn-section">
                 <section>
                     <h2>Hva lærer du?</h2>
@@ -686,6 +194,7 @@
                 </p>
             </section>
 
+            <!--Lists all the classes a student can/will take during this course-->
             <section class="centering study-structure-section">
                 <h2 class="section-header">Studiets oppbygging</h2>
 
@@ -984,6 +493,7 @@
                 </section>
             </section>
 
+            <!--List of what happens during the course-->
             <section class="centering tuition-list-section">
                 <h2>Hvordan foregår undervisningen?</h2>
                 <p>Undervisningen er en kombinasjon av</p>
@@ -1001,6 +511,7 @@
                 <p>For å gjennomføre studiet på normert tid, må du regne med å bruke om lag 40 timer per uke på studierelatert arbeid gjennom hele semesteret.</p>
             </section>
 
+            <!--What the cost of tuition is and when to pay-->
             <section class="centering tuition-cost-section">
                 <h2 class="section-header">Hva koster det?</h2>
                 <div class="paragraph-content">
@@ -1012,6 +523,7 @@
                 </div>
             </section>
 
+            <!--Information about what work opportunities are available for a student after graduation-->
             <section class="centering work-opportunities-section">
                 <h2>Hva kan du jobbe som?</h2>
                 <p>Med dette studiet får du IT-kompetanse som er etterspurt i arbeidslivet, særlig om du velger spesialiseringene vitenskapelige beregninger eller statistiske og datadrevne metoder.</p>
@@ -1020,11 +532,13 @@
                 <p>Datadrevne metoder og maskinlæring er i dag svært mye brukt i arbeidslivet.</p>
             </section>
 
+            <!--Let's students know if/when they can study abroad-->
             <section class="centering foreign-exchange-section">
                 <h2 class="section-header">Utveksling</h2>
                 <p class="paragraph-content">Du kan dra på utveksling i femte semester.</p>
             </section>
 
+            <!--Shows what further studies are available after graduation-->
             <section class="centering masters-studies-section">
                 <h2>Videre studiemuligheter ved OsloMet</h2>
                 <a href="https://www.oslomet.no/studier/tkd/anvendt-data-informasjonsteknologi" target="_blank">
@@ -1042,6 +556,7 @@
                 </a>
             </section>
 
+            <!--Shows where the university is located-->
             <section class="centering place-of-study-section">
                 <h2 class="section-header">Studiested</h2>
                 <p class="paragraph-content">
@@ -1052,6 +567,7 @@
                 </p>
             </section>
 
+            <!--About where to go for further information-->
             <section class="centering education-questions-section">
                 <h2>Spørsmål om utdanningen?</h2>
                 <p>
@@ -1062,6 +578,7 @@
                 </p>
             </section>
 
+            <!--Contact information to the manager-->
             <section class="centering manager-section">
                 <h2 class="section-header">Faglig leder</h1>
                 <a class="manager-container paragraph-content paragraph-content-link" href="https://www.oslomet.no/om/ansatt/krhel3944/" target="_blank">
@@ -1074,6 +591,7 @@
                 </a>
             </section>
 
+            <!--Lists other available courses that are related-->
             <section class="centering suggested-programs-section">
                 <h2>Du er kanskje også interessert i disse?</h2>
                 <section>
@@ -1202,6 +720,7 @@
             </section>
         </main>
 
+        <!--Footer section at the bottom that lists social media links + contact-->
         <footer class="footer">
             <section class="footer-top">
                 <div class="footer-top-inner">
