@@ -431,10 +431,32 @@ li {
     color: #fff;
 }
 
-/* CSS specifically for the activity.html page */
+
+
+/*----------------CSS specifically for the activity.html page----------------*/
 .activity-image {
     width: 100%;
     margin-top: 20px;
+}
+
+
+
+/*----------------CSS specifically for the git.html page----------------*/
+.git-picture-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 1000px;
+}
+.git-picture-section img {
+    width: 100%;
+}
+.git-table {
+    border-spacing: 20px 5px;
+}
+.git-table-head {
+    border-bottom: 1px solid #000;
 }
 
 
@@ -509,6 +531,13 @@ li {
 @media (max-width: 750px) {
     .footer-top-inner,
     .footer-bottom-inner {
+        flex-direction: column;
+    }
+}
+
+/*----------------Screen size changes specifically for the git.html page----------------*/
+@media (max-width: 900px) {
+    .git-picture-section {
         flex-direction: column;
     }
 }
