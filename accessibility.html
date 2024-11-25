@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility</title>
+    <link rel="icon" type="image/png" href="icons/favicon-32x32.png">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--Header bar at the top-->
+    <header class="header">
+        <div class="header-left-section">
+            <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png" alt="Oslo Metropolitan University logo"></a>
+        </div>
+        <div class="header-center-section">
+            <input class="search-bar" type="text" placeholder="Search">
+            <button class="search-button">
+                <img class="search-icon" src="icons/search-icon.svg" alt="Search">
+                <div class="tooltip tooltip-top">Search</div>
+            </button>
+        </div>
+        <div class="header-right-section">
+            <a class="student-overview-button" href="https://www.w3.org/WAI/fundamentals/accessibility-intro/" target="_blank">
+                <img src="icons/arrow-left.svg" alt="Studieoversikt">
+                <span>W3 Accessibility</span>
+                <div class="tooltip tooltip-top">W3 web accessibility page</div>
+            </a>
+        </div>
+    </header>
+
+    <!--Main navigation menu on the left side-->
+    <section>
+        <nav class="sidebar-menu">
+            <a class="sidebar-menu-link" href="index.html">
+                <img class="toggle-hide" src="icons/home-icon.png" alt="Home">
+                <div>Home</div>
+            </a>
+            <a class="sidebar-menu-link" href="accessibility.html">
+                <img class="toggle-hide" src="icons/accessibility-icon.png" alt="Accessibility">
+                <div>Accessibility</div>
+            </a>
+            <a class="sidebar-menu-link" href="git.html">
+                <img class="toggle-hide" src="icons/github-icon.png" alt="GitHub">
+                <div>Git & GitHub</div>
+            </a>
+            <a class="sidebar-menu-link" href="activity.html">
+                <img class="toggle-hide" src="icons/activity-icon.png" alt="Activit">
+                <div>Activity</div>
+            </a>
+        </nav>
+    </section>
+
+    <main class="main-section">
+        <h1 class="centering">Accessibility for OsloMet</h1>
+
+        <!--Statements about commitment-->
+        <section class="centering">
+            <h2 class="section-header">Our Commitment</h2>
+            <p class="paragraph-content">We are committed to making our website accessible to everyone, including people with disabilities. If you encounter any issues, please let us know.</p>
+        </section>
+        
+        <!--Statements about the standard-->
+        <section class="centering">
+            <h2>Standards</h2>
+            <p>Our website strives to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.</p>
+        </section>
+        
+        <!--List of features-->
+        <section class="centering">
+            <h2 class="section-header">Accessibility Features</h2>
+            <ul class="paragraph-content">
+                <li><strong>Keyboard Navigation:</strong> Navigate our site without a mouse.</li>
+                <li><strong>Alt Text:</strong> Images include descriptive alt text.</li>
+                <li><strong>High Contrast Mode:</strong> Colors ensure readability.</li>
+            </ul>
+        </section>
+        
+        <!--List contact information-->
+        <section class="centering">
+            <h2>Feedback</h2>
+            <p>We welcome feedback on the accessibility of our website. If you encounter any issues, please contact us:</p>
+            <ul>
+                <li>Email: <a class="normal-link" href="mailto:itservicedesk@oslomet.no">itservicedesk@oslomet.no</a></li>
+                <li>Feedback Form: <a class="normal-link" href="https://student.oslomet.no/en/si-ifra" target="_blank">Submit feedback</a></li>
+            </ul>
+        </section>
+        
+        <!--Final statement-->
+        <section class="centering">
+            <h2 class="section-header">Limitations</h2>
+            <p class="paragraph-content">We are continually working to improve our accessibility. Some content may not yet meet standards, and we welcome your input to address these gaps.</p>
+        </section>
+    </main>
+
+    <!--Footer section at the bottom that lists social media links + contact-->
+    <footer class="footer">
+        <section class="footer-top">
+            <div class="footer-top-inner">
+                <h2>Hold deg oppdatert på hva som skjer på OsloMet.</h2>
+                <a href="https://www.oslomet.no/nyhetsbrev">Abonner på vårt nyhetsbrev!</a>
+            </div>
+        </section>
+
+        <section class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <section class="footer-bottom-inner-sections">
+                    <img src="icons/logo-footer.svg" alt="Oslo Metropolitan University banner">
+                    <div class="footer-info">
+                        <p>Postboks 4, St. Olavs plass</p>
+                        <p>0130 Oslo</p>
+                        <p>Tlf.: 67 23 50 00</p>
+                        <p><a href="https://www.oslomet.no/om/kontakt">Kontakt oss</a></p>
+                    </div>
+                </section>
+                <section class="footer-bottom-inner-sections">
+                    <div class="footer-links-container">
+                        <p><a class="footer-links" href="https://www.oslomet.no/en">English</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/alumni">Alumni</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/ansatteoversikt">Ansatteoversikt</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/arrangement/arrangementsoversikt">Arrangementsoversikt</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/for-ansatte">For ansatte</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/for-studenter">For studenter</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/ledige-stillinger">Ledige stillinger</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/personvernerklering-informasjonskapslar">Personvernerklæring og informasjonskapslar</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/pressekontakt">Pressekontakt</a></p>
+                        <p><a class="footer-links" href="https://www.oslomet.no/om/tilgjengelegheitserklering">Tilgjengelegheitserklæring</a></p>
+                        <p><a class="footer-links" href="https://www-admin.oslomet.no/admin/view/content/58148">Admin</a></p>
+                    </div>
+                </section>
+                <section class="footer-bottom-inner-sections">
+                    <a href="https://www.facebook.com/oslomet/">
+                        <div class="social-media-links">
+                            <img src="icons/icon-facebook.svg" alt="OsloMet på Facebook">
+                            <div>Facebook</div>
+                        </div>
+                    </a>
+                    <a href="https://twitter.com/oslomet">
+                        <div class="social-media-links">
+                            <img src="icons/icon-twitter.png" alt="OsloMet på X (Twitter)">
+                            <div>X (Twitter)</div>
+                        </div>
+                    </a>
+                    <a href="https://no.linkedin.com/school/oslomet/">
+                        <div class="social-media-links">
+                            <img src="icons/icon-linkedin.svg" alt="OsloMet på LinkedIn">
+                            <div>LinkedIn</div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/oslomet/?hl=nb">
+                        <div class="social-media-links">
+                            <img src="icons/icon-instagram.svg" alt="OsloMet på Instagram">
+                            <div>Instagram</div>
+                        </div>
+                    </a>
+                </section>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
