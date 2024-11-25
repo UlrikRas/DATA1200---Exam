@@ -4,391 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git page</title>
+    <link rel="icon" type="image/png" href="icons/favicon-32x32.png">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-                margin: 0;
-                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-                background-color: rgb(248, 248, 248);
-                color: #000;
-            }
-            h1, h2, h3 {
-                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-            } 
-        
-            .search-button,
-            .student-overview-button,
-            .arrow-link {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                cursor: pointer;
-            }
-            .arrow-link {
-                justify-content: left;
-            }
-            .search-button .tooltip,
-            .student-overview-button .tooltip {
-                position: absolute;
-                bottom: -30px;
-
-                opacity: 0;
-                transition: opacity 0.15s;
-
-                pointer-events: none;
-                white-space: nowrap;
-
-                background-color: gray;
-                color: #fff;
-                font-size: 12px;
-                font-weight: 400;
-                padding: 4px 8px;
-                border-radius: 2px;
-            }
-            .search-button:hover .tooltip,
-            .student-overview-button:hover .tooltip {
-                opacity: 1;
-            }
-            .tooltip::after {
-                content: " ";
-                position: absolute;
-                left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
-                border-style: solid;
-            }
-            .tooltip-top::after {
-                bottom: 100%;
-                border-color: transparent transparent gray transparent;
-            }
-
-            .header {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-
-                z-index: 100;
-
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-
-                height: 55px;
-                background-color: #fff;
-                border-bottom: 1px solid rgb(228, 228, 228);
-            }
-
-            .header-left-section {
-                margin: 0 25px 0 0;
-            }
-            .oslomet-logo {
-                width: 111px;
-                height: 56px;
-            }
-
-            .header-center-section {
-                margin: 0 35px 0 60px;
-                max-width: 400px;
-
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                flex: 1;
-
-            }
-            .search-bar {
-                flex: 1;
-
-                width: 0;
-                height: 30px;
-
-                padding-left: 10px;
-                border: 1px solid rgb(192, 192, 192);
-                border-radius: 2px;
-                font-size: 16px;
-
-                box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
-            }
-            .search-button {
-                margin: 0 10px 0 -1px;
-
-                width: 55px;
-                height: 34px;
-
-                border: 1px solid rgb(192, 192, 192);
-
-                cursor: pointer;
-            }
-            .search-icon {
-                height: 20px;
-                margin-top: 2px;
-            }
-
-            .header-right-section {
-                margin: 0 15px;
-
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-            }
-            .student-overview-button,
-            .arrow-link {
-                color: #000;
-                text-decoration: underline;
-                font-size: 16px;
-                font-weight: 700;
-            }
-            .student-overview-button {
-                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-                text-decoration: none;
-            }
-            .student-overview-button img,
-            .arrow-link img {
-                margin-right: 10px;
-                transition: margin 0.15s;
-            }
-            .arrow-link:hover img {
-                margin-right: 20px;
-            }
-            .student-overview-button .tooltip {
-                font-family: Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-            }
-
-            .sidebar-menu {
-                position: fixed; 
-                top: 55px;
-                bottom: 0;
-                left: 0;
-
-                z-index: 200;
-
-                background-color: #fff;
-                border-right: 1px solid rgb(228, 228, 228);
-                width: 110px;
-            }
-            .sidebar-menu-link {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                height: 74px;
-
-                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-                font-size: 11px;
-                text-decoration: none;
-                color: #000;
-            }
-            .sidebar-menu-link:hover {
-                background-color: rgb(235, 235, 235);
-            }
-            .sidebar-menu-link img {
-                margin: 0 0 4px 0;
-                height: 24px;
-            }
-            .sidebar-menu-bottom-link {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 110px;
-            }
-            .toggle-hide {
-                visibility: visible;
-            }
-
-            .footer {
-                margin-left: 100px;
-
-                background-color: #fff;
-                border-top: 1px solid rgb(228, 228, 228);
-            }
-
-            .footer-top {
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 20px 40px;
-            }
-            .footer-top-inner {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .footer-top-inner a {
-                background-color: #000;
-                color: #ffd500;
-                font-weight: 700;
-                line-height: 30px;
-                padding: 20px;
-                max-width: 203px;
-            }
-            .footer-top-inner a:hover {
-                color: #fff;
-            }
-
-            .footer-bottom {
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 20px 50px 150px 40px;
-            }
-            .footer-bottom-inner {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .footer-bottom-inner-sections {
-                margin-bottom: 50px;
-            }
-            .footer-info {
-                margin-top: 10px;
-            }
-            .footer-info p {
-                margin: 5px 0;
-                font-weight: 700;
-            }
-
-            .footer-links-container p {
-                margin: 0 0 10px 0;
-            }
-            .footer-links {
-                padding: 5px;
-                border-radius: 2px;
-                transition: background-color 0.15s, color 0.15s;
-            }
-            .footer-links:hover {
-                background-color: #000;
-                color: #ffd500;
-            }
-
-            .social-media-links {
-                margin-bottom: 20px; 
-                display: flex; 
-                flex-direction: row; 
-                align-items: center;
-                width: 120px;
-            }
-            .social-media-links img {
-                margin-right: 10px;
-            }
-            .social-media-links:hover div {
-                text-decoration: underline;
-            }
-
-            .sidebar-menu {
-                position: fixed; 
-                top: 55px;
-                bottom: 0;
-                left: 0;
-
-                z-index: 200;
-
-                background-color: #fff;
-                border-right: 1px solid rgb(228, 228, 228);
-                width: 110px;
-            }
-            .sidebar-menu-link {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                height: 74px;
-
-                font-family: "Fjalla One", Roboto, Moderat, Avenir, Helvetica, Arial, sans-serif;
-                font-size: 11px;
-                text-decoration: none;
-                color: #000;
-            }
-            .sidebar-menu-link:hover {
-                background-color: rgb(235, 235, 235);
-            }
-            .sidebar-menu-link img {
-                margin: 0 0 4px 0;
-                height: 24px;
-            }
-            .sidebar-menu-bottom-link {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 110px;
-            }
-            .toggle-hide {
-                visibility: visible;
-            }
-           
-            .text {
-                margin: 70px auto;
-                min-width: 700px;
-                max-width: 1000px;
-            }
-            .text h1 {
-                margin-bottom: 0;
-                font-size: 35px;
-            }
-
-            .images {
-            margin: 70px auto; 
-            min-width: 700px;
-            max-width: 1500px;
-            }
-
-            .images {
-                display: flex;
-                justify-content: space-between;
-                gap: 10px;
-            }
-
-            .images img {
-                width: 100%;
-                max-width: 750px;
-                height: auto;
-            }
-
-            .list {
-                background-color: #fff;
-                padding: 10px 20px;
-                border: 1px solid rgb(228, 228, 228);
-                border-radius: 5px;
-            }
-            h3 {
-                background-color: #000;
-                color: #ffd500;
-                padding: 5px 10px;
-                border-radius: 3px;
-            }
-                    
-    </style>
-
 </head>
 
 <body>
-    <header class="header"> <!--HTML fra html.index for å reprodusere headeren-->
+    <!--Header bar at the top-->
+    <header class="header">
         <div class="header-left-section">
             <a href="https://www.oslomet.no/" target="_blank"><img class="oslomet-logo" src="icons/oslomet-logo.png" alt="Oslo Metropolitan University logo"></a>
         </div>
         <div class="header-center-section">
-            <input class="search-bar" type="text" placeholder="Søk">
+            <input class="search-bar" type="text" placeholder="Search">
             <button class="search-button">
-                <img class="search-icon" src="icons/search-icon.svg" alt="Søk">
-                <div class="tooltip tooltip-top">Søk</div>
+                <img class="search-icon" src="icons/search-icon.svg" alt="Search">
+                <div class="tooltip tooltip-top">Search</div>
             </button>
         </div>
         <div class="header-right-section">
-            <a class="student-overview-button" href="https://www.oslomet.no/studier/studieoversikt" target="_blank">
-                <img src="icons/arrow-left.svg" alt="Studieoversikt">
-                <span>Studieoversikt</span>
-                <div class="tooltip tooltip-top">Finn studier</div>
+            <a class="student-overview-button" href="https://github.com/" target="_blank">
+                <img src="icons/arrow-left.svg" alt="GitHub">
+                <span>GitHub</span>
+                <div class="tooltip tooltip-top">Go to GitHub</div>
             </a>
         </div>
     </header>
 
-    <section> <!--HTML fra html.index for å reprodusere naviasjonsmenyen-->
+    <!--Main navigation menu on the left side-->
+    <section>
         <nav class="sidebar-menu">
             <a class="sidebar-menu-link" href="index.html">
                 <img class="toggle-hide" src="icons/home-icon.png" alt="Home">
@@ -400,176 +48,151 @@
             </a>
             <a class="sidebar-menu-link" href="git.html">
                 <img class="toggle-hide" src="icons/github-icon.png" alt="GitHub">
-                <div>GitHub</div>
+                <div>Git & GitHub</div>
             </a>
             <a class="sidebar-menu-link" href="activity.html">
                 <img class="toggle-hide" src="icons/activity-icon.png" alt="Activit">
                 <div>Activity</div>
             </a>
-
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/studier">
-                <img class="toggle-hide" src="icons/study-icon.png" alt="Studier">
-                <div>Studier</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/forskning">
-                <img class="toggle-hide" src="icons/research-icon.png" alt="Forskningen vår">
-                <div>Forskningen vår</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/samarbeid">
-                <img class="toggle-hide" src="icons/teamwork-icon.png" alt="Samarbeid">
-                <div>Samarbeid</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/ub">
-                <img class="toggle-hide" src="icons/library-icon.png" alt="Universitetsbiblioteket">
-                <div>Universitetsbiblioteket</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/kontakt">
-                <img class="toggle-hide" src="icons/contact.png" alt="Kontakt oss">
-                <div>Kontakt</div>
-            </a>
-            <a class="sidebar-menu-link" href="https://www.oslomet.no/om/for-studenter">
-                <img class="toggle-hide" src="icons/students-icon.png" alt="For studenter">
-                <div>For studenter</div>
-            </a>
-
-            <a class="sidebar-menu-link sidebar-menu-bottom-link" href="https://www.oslomet.no/om">
-                <img class="toggle-hide" src="icons/about-icon.png" alt="Om OsloMet">
-                <div>Om OsloMet</div>
-            </a>
         </nav>
     </section>
 
-    
-    
-    <article class="text">
-        <h1>Intro to Git and Github</h1>
 
-        <section class="git">
-
-            <h3>What is Git</h3>    <!--Information in this paragraph is mainly from the Git website(https://git-scm.com/about/branching-and-merging) and the Git Wikipedia site https://en.wikipedia.org/wiki/Git-->
-                <p>Git i a distributed version control system(VCS). It was developed in 2005 by Linus Torvalds and was originally created to assist in the development 
+    <main class="main-section">
+        <article>
+        <h1 class="centering">Intro to Git and Github</h1>
+       
+        <!--General information about Git-->
+        <section class="centering">
+            <h2 class="section-header">What is Git</h2> <!--Information in this paragraph is mainly from the Git website(https://git-scm.com/about/branching-and-merging) and the Git Wikipedia site https://en.wikipedia.org/wiki/Git-->
+            <div class="paragraph-content">
+            <p>
+                Git i a distributed version control system(VCS). It was developed in 2005 by Linus Torvalds and was originally created to assist in the development 
                 of the Linux kernel. Just like Linux it's an open source project which is actively maintained. It's organized by the Git Project and can be downloaded from 
-                their <a href="https://git-scm.com/" target="_blank">website</a>. Its main use is controlling the source code of a program while developing software in collaboration with others. Git pioneered the branching model for source control systems. Practicing development with this model means you 
-                have a main branch of code, sometimes refered to as the "trunk" or master branch
-                </p>
+                their <a href="https://git-scm.com/">website</a>. 
+                Its main use is controlling the source code of a program 
+                while developing software in collaboration with others. Git pioneered the branching model for source control systems. Practicing development with this model means you 
+                have a main branch of code, sometimes refered to as the "trunk" or master branch.
+            </p>
 
             <h3>Why use Git</h3>
-                <p>Git provides you with version control of the code you are working on. This allows you to revert to a previous version if needed. In this context we are mainly discussing
+            <p>
+                Git provides you with version control of the code you are working on. This allows you to revert to a previous version if needed. In this context we are mainly discussing
                 Git as a tool for managing coding projects, but it can be used for all kinds of files. A version control system can be beneficial when 
                 working on spreadsheets, producing music, picture editing, etc. By offering the possibility of branching your project you can work on new ideas without affecting the main branch,
                 and when you're done you can decide to incorporate it to the main branch or not. In this way Git is able to improve your workflow by enabling you to have a clear history of
-                your project and managing changes effectivly.</p>
+                your project and managing changes effectivly.
+            </p>
+                    
+            <h3>Advantages of using Git</h3>
+            <ul>
+                <li>Tracks changes to the project
+                <li>Provides historical back-up of project-files
+                <li>Create branches to try out ideas</li>
+                <li>It can handle large projects</li>
+            </ul>
+            </div>
+
+            <!--Images showing repo commits-->
+            <div class="centering git-picture-section">
+                <picture>
+                    <source media="(min-width: 1253px)" srcset="pictures/commits_1_large.JPG" sizes="(min-width: 1253px) 1253px, 100vw">
+                    <source media="(min-width: 940px)" srcset="pictures/commits_1_medium.JPG" sizes="(min-width: 940px) 768px, 100vw">
+                    <img src="pictures/commits_1_small.JPG" alt="Screenshoot of Github commit history" title="Commit history">
+                </picture>
+        
+                <picture>
+                    <source media="(min-width: 1252px)" srcset="pictures/commits_2_large.JPG" sizes="(min-width: 1252px) 1252px, 100vw">
+                    <source media="(min-width: 939px)" srcset="pictures/commits_2_medium.JPG" sizes="(min-width: 939px) 939px, 100vw">
+                    <img src="pictures/commits_2_small.JPG" alt="Screenshoot of Github commit history" title="Commit history">
+                </picture>
+            </div>
         </section>
 
-        <h3>Advantages of using Git</h3>
-
-        <div class="list">
-            
-                <ul>
-                    <li>Tracks changes to the project
-                    <li>Provides historical back-up of project-files
-                    <li>Create branches to try out ideas</li>
-                    <li>It can handle large projects</li>
-                </ul>
-        </div>
-    </article>
-
-    <div class="images">
-        <picture>
-            <source media="(min-width: 1253px)" srcset="pictures/commits_1_large.JPG" sizes="(min-width: 1253px) 1253px, 100vw">
-            <source media="(min-width: 940px)" srcset="pictures/commits_1_medium.JPG" sizes="(min-width: 940px) 768px, 100vw">
-            <img src="pictures/commits_1_small.JPG" alt="Screenshoot of Github commit history" title="Commit history">
-        </picture>
-
-        <picture>
-            <source media="(min-width: 1252px)" srcset="pictures/commits_2_large.JPG" sizes="(min-width: 1252px) 1252px, 100vw">
-            <source media="(min-width: 939px)" srcset="pictures/commits_2_medium.JPG" sizes="(min-width: 939px) 939px, 100vw">
-            <img src="pictures/commits_2_small.JPG" alt="Screenshoot of Github commit history" title="Commit history">
-        </picture>
-    </div>    
-
-
-    <article class="text">
-
-        <section class="github">  <!--Information gathered from Github wikipedia page - https://en.wikipedia.org/wiki/GitHub -->
-
-            <h3>What is Github</h3>
-
-                <p>Github is a cloud-based platform designed for developers to collaborate on code and manage projects. It uses the Git version control system. Github was started in San Fransisco
+        <!--General information about GitHub-->
+        <section class="centering">
+            <h2>What is Github</h2>
+            <p>
+                Github is a cloud-based platform designed for developers to collaborate on code and manage projects. It uses the Git version control system. Github was started in San Fransisco
                 in october 2007 by four developers. The site was launched in april 2008 and gained popularity quite quickly. Within a few years it became tha largest code repository host in the world.
-                In 2018 Github was aquired by Microsoft, but it remains an independent business with Microsoft as it's parent company.</p>
+                In 2018 Github was aquired by Microsoft, but it remains an independent business with Microsoft as it's parent company.
+            </p>
 
             <h3>Why use Github</h3>
-
-                <p>Since Github is cloud-based as opposed to Git it means your repositories will be backed up independently of your local system. This means you can also
+            <p>
+                Since Github is cloud-based as opposed to Git it means your repositories will be backed up independently of your local system. This means you can also
                 access them from anywhere with an internet connection. This ads a layer of safety ensuring your projects will be safe if you should lose or break your computer.
                 Extra backup is great, but the real advantage of Github is the community and collaboration. Github enables several developers to collaborate on the same project. They can even 
                 work on it at the same time. You can also create your own forks of other public projects and make your own versions, or even propose those versions to the original project.
                 These features makes Github a fantastic resource for learning and collaboration. It provides a platform for discussion and code reviews so developers and other stakeholders can
-                work together and share knowledge. Go to their <a href="https://github.com/" target="_blank">website</a> to set up an account and join the community!</p>
-        </section>
-    
-        <h3>Advantages of using Gitub</h3>
-    
-        <div class="list">   
-            
-        <ul>
-            <li>Enables teambased development
-            <li>Allows multiple developers to work simultaneously on the same project
-            <li>Allows you to contribute to open source projects and browse other peoples code
-            <li>Enables you to share project you are working on with the world</li>    
-            <li>It's a great resource for learning and networking</li>    
-        </ul>
-    </div>
-    
-    </article>
+                work together and share knowledge. Go to their <a href="https://github.com/" target="_blank">website</a> to set up an account and join the community!
+            </p>
 
-    <div class="images">
-        <picture>
-            <source media="(min-width: 1569px)" srcset="pictures/changes_1_large.JPG" sizes="(min-width: 1569px) 1569px, 100vw">
-            <source media="(min-width: 1177px)" srcset="pictures/changes_1_medium.JPG" sizes="(min-width: 1177px) 1177px, 100vw">
-            <img src="pictures/changes_1_small.JPG" alt="Screenshoot of changes in a certain Github commit" title="Changes in commit">
-        </picture>
+            <h3>Advantages of using Gitub</h3>
+            <ul>
+                <li>Enables teambased development
+                <li>Allows multiple developers to work simultaneously on the same project
+                <li>Allows you to contribute to open source projects and browse other peoples code
+                <li>Enables you to share project you are working on with the world</li>    
+                <li>It's a great resource for learning and networking</li>   
+            </ul>
         
-        <picture>
-            <source media="(min-width: 1569px)" srcset="pictures/changes_2_large.JPG" sizes="(min-width: 1569px) 1569px, 100vw">
-            <source media="(min-width: 1177px)" srcset="pictures/changes_2_medium.JPG" sizes="(min-width: 1177px) 1177px, 100vw">
-            <img src="pictures/changes_2_small.JPG" alt="Screenshoot of changes in a certain Github commit" title="Changes in commit">
-        </picture>
-    </div>
+            <!--Images showing merge conflicts-->
+            <div class="centering git-picture-section">
+                <picture>
+                    <source media="(min-width: 1253px)" srcset="pictures/changes_1_large.JPG" sizes="(min-width: 1253px) 1253px, 100vw">
+                    <source media="(min-width: 940px)" srcset="pictures/changes_1_medium.JPG" sizes="(min-width: 940px) 768px, 100vw">
+                    <img src="pictures/changes_1_small.JPG" alt="Screenshoot of changes in a certain Github commit" title="Changes in commit">
+                </picture>
+                
+                <picture>
+                    <source media="(min-width: 1252px)" srcset="pictures/changes_2_large.JPG" sizes="(min-width: 1252px) 1252px, 100vw">
+                    <source media="(min-width: 939px)" srcset="pictures/changes_2_medium.JPG" sizes="(min-width: 939px) 939px, 100vw">
+                    <img src="pictures/changes_2_small.JPG" alt="Screenshoot of changes in a certain Github commit" title="Changes in commit">
+                </picture>
+            </div>
+        </section>
 
-  <!--  <h2>Git and Github - Key differences</h2> Hentet fra https://www.simplilearn.com/tutorials/git-tutorial/git-vs-github
-    
-    <table>
-        <tr>
-          <th>Git</th>
-          <th>Github</th>         
-        </tr>
-        <tr>
-            <td>Git is software</td>
-            <td>Github is a service</td>
-        </tr>
-        <tr>
-            <td>The Git Project maintains Git</td>
-            <td>Microsoft owns and maintains Github</td>
-        </tr>
-        <tr>
-            <td>It's a command-line tool</td>
-            <td>It's a graphical user interface</td>
-        </tr>
-        <tr>
-            <td>Installs locally on your system</td>
-            <td>Hosted on the web</td>
-        </tr>
-        <tr>
-            <td>It's a VCS to manage source code history</td>
-            <td>It's a hosting service for Git repositories</td>
-        </tr>
-        <tr>
-            <td>It's open-source</td>
-            <td>Has free-tier and pay-tier options</td>
-        </tr>-->
-    
+        <!--List of differences between Git and GitHub-->
+        <section class="centering">
+            <h2 class="section-header">Git and Github - Key differences</h2> <!--Hentet fra https://www.simplilearn.com/tutorials/git-tutorial/git-vs-github-->
+            <div class="paragraph-content">
+            <table class="git-table">
+                <tr">
+                <th class="git-table-head">Git</th>
+                <th class="git-table-head">Github</th>         
+                </tr>
+                <tr>
+                    <td>Git is software</td>
+                    <td>Github is a service</td>
+                </tr>
+                <tr>
+                    <td>The Git Project maintains Git</td>
+                    <td>Microsoft owns and maintains Github</td>
+                </tr>
+                <tr>
+                    <td>It's a command-line tool</td>
+                    <td>It's a graphical user interface</td>
+                </tr>
+                <tr>
+                    <td>Installs locally on your system</td>
+                    <td>Hosted on the web</td>
+                </tr>
+                <tr>
+                    <td>It's a VCS to manage source code history</td>
+                    <td>It's a hosting service for Git repositories</td>
+                </tr>
+                <tr>
+                    <td>It's open-source</td>
+                    <td>Has free-tier and pay-tier options</td>
+                </tr>
+            </table>
+            </div>
+        </section>
+        </article>
+    </main>
+
+        <!--Footer section at the bottom that lists social media links + contact-->
         <footer class="footer">
             <section class="footer-top">
                 <div class="footer-top-inner">
@@ -632,6 +255,6 @@
                     </section>
                 </div>
             </section>
-        </footer>    
+        </footer>
 </body>
 </html>
